@@ -1,0 +1,72 @@
+{
+  "name": "cordova-plugin-advanced-http",
+  "version": "2.5.1",
+  "description": "Cordova / Phonegap plugin for communicating with HTTP servers using SSL pinning",
+  "scripts": {
+    "updatecert": "node ./scripts/update-e2e-server-cert.js && node ./scripts/update-e2e-client-cert.js",
+    "buildbrowser": "./scripts/build-test-app.sh --browser",
+    "buildandroid": "./scripts/build-test-app.sh --android --emulator",
+    "buildios": "./scripts/build-test-app.sh --ios --emulator",
+    "testandroid": "npm run updatecert && npm run buildandroid && ./scripts/test-app.sh --android --emulator",
+    "testios": "npm run updatecert && npm run buildios && ./scripts/test-app.sh --ios --emulator",
+    "testapp": "npm run testandroid && npm run testios",
+    "testjs": "mocha ./test/js-specs.js",
+    "test": "npm run testjs && npm run testapp",
+    "release": "npm run test && ./scripts/release.sh"
+  },
+  "cordova": {
+    "id": "cordova-plugin-advanced-http",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silkimen/cordova-plugin-advanced-http.git"
+  },
+  "keywords": [
+    "cordova",
+    "device",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "ssl",
+    "tls"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=4.0.0"
+    }
+  ],
+  "author": "Wymsee",
+  "contributors": [
+    "devgeeks",
+    "EddyVerbruggen",
+    "mbektchiev",
+    "denisbabineau",
+    "andrey-tsaplin",
+    "pvsaikrishna",
+    "cvillerm",
+    "hideov",
+    "silkimen"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/silkimen/cordova-plugin-advanced-http/issues"
+  },
+  "homepage": "https://github.com/silkimen/cordova-plugin-advanced-http#readme",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
+    "colors": "1.1.2",
+    "cordova": "8.1.2",
+    "mocha": "4.0.0",
+    "mock-require": "2.0.2",
+    "mz": "2.7.0",
+    "umd-tough-cookie": "2.4.3",
+    "wd": "1.4.1",
+    "xml2js": "0.4.19"
+  }
+}

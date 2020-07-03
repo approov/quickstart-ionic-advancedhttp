@@ -1,0 +1,11 @@
+build.json
+Demo*/
+node_modules/
+package-lock.json
+package.json
+platforms/
+plugins/
+res/drawable-mdpi/
+res/mipmap-mdpi/
+.DS_Store
+._*
