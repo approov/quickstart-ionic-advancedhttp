@@ -61,7 +61,7 @@ To build and run the Cordova Shapes App, open a shell terminal at the `cordova-a
 For Android:
 
 ```
-$ cordova plugin add cordova-plugin-advanced-http@2.1.1
+$ cordova plugin add cordova-plugin-advanced-http@3.1.0
 $ cordova platform add android
 $ cordova build
 $ cordova run
@@ -127,7 +127,7 @@ $ approov sdk -getLibrary ../plugins/cordova-plugin-approov-http/approov-sdk/app
 This directly gets the SDK into the correct location in the plugin. On success, the tool outputs a message similar to this:
 
 ```
-Android SDK library 2.3.0(2726) written to ../plugins/cordova-plugin-approov-http/approov-sdk/approov-sdk.aar
+Android SDK library 2.6.0(3498) written to ../plugins/cordova-plugin-approov-http/approov-sdk/approov-sdk.aar
 ```
 
 For iOS:
@@ -210,6 +210,9 @@ For Android:
 
 ```
 $ approov registration -add platforms/android/app/build/outputs/apk/debug/app-debug.apk
+    registering app Cordova Approov Shapes
+    6k3T3YsesA1Qe8FKUoJU/sx/fmGcJSuVbrw0CzOGpJI=io.approov.demo.shapes.http.cordova-2.0.0[20000]-3498  SDK:Android(2.6.0)
+    registration successful
 ```
 
 For iOS:
