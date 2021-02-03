@@ -7,6 +7,7 @@ This quickstart is written specifically for Android and iOS apps that are implem
 * The `approov` command line tool [installed](https://approov.io/docs/latest/approov-installation/) with access to your account
 * The contents of the folder containing this README
 * An iOS device if you are using the iOS platform. You may use an iOS simulator but the Approov SDK requires an actual iOS device in order to authenticate an application.
+* XCode if targetting iOS development in order to edit codesigning options. Version 12.3 is used in this document.
 
 ## WHAT YOU WILL LEARN
 * How to integrate Approov into a real app in a step by step fashion
