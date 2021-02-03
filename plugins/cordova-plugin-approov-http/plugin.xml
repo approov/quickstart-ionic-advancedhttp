@@ -73,7 +73,7 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
         <header-file src="src/ios/CordovaApproovHttpPlugin.h" />
         <source-file src="src/ios/CordovaApproovHttpPlugin.m" />
 
-        <framework src="approov-sdk/Approov.framework" custom="true" embed="true" />
+        <framework src="approov-sdk/Approov.xcframework" custom="true" embed="true" />
 
         <resource-file src="approov-sdk/approov-initial.config" target="approov-initial.config" />
 

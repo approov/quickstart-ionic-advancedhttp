@@ -6,6 +6,7 @@ This quickstart is written specifically for Android and iOS apps that are implem
 * Access to a trial or paid Approov account
 * The `approov` command line tool [installed](https://approov.io/docs/latest/approov-installation/) with access to your account
 * The contents of the folder containing this README
+* An iOS device if you are using the iOS platform. You may use an iOS simulator but the Approov SDK requires an actual iOS device in order to authenticate an application.
 
 ## WHAT YOU WILL LEARN
 * How to integrate Approov into a real app in a step by step fashion
@@ -68,19 +69,22 @@ $ cordova run
 For iOS:
 
 ```
-$ cordova plugin add cordova-plugin-advanced-http@2.1.1
+$ cordova plugin add cordova-plugin-advanced-http@3.1.0
 $ cordova platform add ios
-$ cordova build
-$ cordova run
-
 ```
-If the iOS build or run step fail with a signing error, open the Xcode project located in `cordova-advanced-http/shapes-app/platforms/ios/Cordova\ Approov\ Shapes.xcworkspace`:
+
+Running an iOS app requires codesigning. Open the Xcode project located in `cordova-advanced-http/shapes-app/platforms/ios/Cordova Approov Shapes.xcworkspace`:
 
 ```
 $ open platforms/ios/Cordova\ Approov\ Shapes.xcworkspace
 ```
 
-Select your code signing team in the _Signing & Capabilities_ section of the project. Also ensure you modify the app's `Bundle Identifier` so it contains a unique string (you can simply append your company name). This is to avoid Apple rejecting a duplicate `Bundle Identifier` when code signing is performed. Then return to the shell and repeat the failed build step.
+Select your code signing team in the `Signing & Capabilities` section of the project. Also ensure you modify the app's `Bundle Identifier` so it contains a unique string (you can simply append your company name). This is to avoid Apple rejecting a duplicate `Bundle Identifier` when code signing is performed. Then return to the shell and enter:
+
+```
+$ cordova build
+$ cordova run
+```
 
 You should now be able to use the app to say hello and get shapes.
 
@@ -128,19 +132,15 @@ Android SDK library 2.3.0(2726) written to ../plugins/cordova-plugin-approov-htt
 For iOS:
 ```
 $ cd ../plugins/cordova-plugin-approov-http/approov-sdk
-$ approov sdk -getLibrary approov.zip
+$ approov sdk -getLibrary Approov.xcframework
 ```
 On success, the tool outputs a message similar to this:
 
 ```
-$ iOS SDK library 2.3.0(4359) written to approov.zip
-```
-Unzip the downloaded archive:
-```
-$ unzip approov.zip
+$ iOS SDK library 2.6.0(5851) written to Approov.xcframework
 $ cd -
 ```
-This will write the Approov SDK framework into `Approov.framework` in the correct location in the plugin.
+This will write the Approov SDK framework into `Approov.xcframework` in the correct location in the plugin.
 
 ### Set up an Initial Approov Configuration
 
@@ -189,16 +189,7 @@ Tokens for this domain will be automatically signed with the specific secret for
 
 ### Build and Run the App Again
 
-Build the app on your preferred platform (for Approov, building for a device is required on iOS)
-
-For iOS, if you plan to submit your application to the app store, you must remove the Intel CPU simulator support architectures from the Approov SDK binary before submitting your app. To do so, before building the app, execute the following commands at the directory `cordova-advanced-http/plugins/cordova-plugin-approov-http/approov-sdk/Approov.framework` using the command line:
-
-```
-lipo Approov -remove i386 -output Approov
-lipo Approov -remove x86_64 -output Approov
-```
-
-Since executing the above commands will disable support for the iOS Simulator, you may wish to keep a copy of the Approov framework or download another copy if a Simulator run is required.
+Build the app on your preferred platform. If you are targetting iOS, a physical device is needed since Approov does not authenticate apps running on iOS simulators. Please, remember to adjust your codesigning certificate options, since the iOS Project has been created again.
 
 Run the app on a device or an emulator (Android only) and examine the logging. You should see in the logs that Approov is successfully fetching tokens, but the Shapes API is not returning valid shapes:
 
@@ -224,6 +215,9 @@ For iOS:
 
 ```
 $ approov registration -add platforms/ios/build/device/Cordova\ Approov\ Shapes.ipa
+    registering app Cordova Approov Shapes
+    eI8Z0dZWtG5O+kHwOj3RbRqh5LojsGZVoSrh5DQ4Mwc=io.approov.demo.shapes.http.cordova-2.0.0[2.0.0]-5851  SDK:iOS-universal(2.6.0)
+    registration successful
 ```
 
 ## RUN THE SHAPES APP WITH APPROOV
