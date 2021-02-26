@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-approov-http"
+        version="2.0"
+>
+    <name>Approov HTTP Cordova Plugin</name>
+    <description>
+        Cordova plugin adding Approov API protection to cordova-plugin-advanced-http
+    </description>
+    <license>Apache 2.0 License</license>
+    <keywords>approov</keywords>
+    <engines>
+        <engine name="cordova" version=">=4.0.0"/>
+    </engines>
+
+    <dependency
+            id="cordova-plugin-advanced-http"
+            url="."
+            subdir="plugins/cordova-plugin-advanced-http"
+            version=">=2.1.1"
+    />
+
+    <js-module src="www/approov-http.js" name="approov-http">
+        <clobbers target="cordova.plugin.approov.http"/>
+    </js-module>
+
+    <!--android -->
+    <platform name="android">
+        <hook type="before_plugin_install" src="scripts/android/appAndroidBeforePluginInstall.js"/>
+        <hook type="after_build" src="scripts/android/appAndroidAfterBuild.js"/>
+        <hook type="before_deploy" src="scripts/android/appAndroidAfterBuild.js"/>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </config-file>
+
+        <!-- Add config to platform config file -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CordovaApproovHttpPlugin">
+                <param name="android-package" value="com.criticalblue.cordova.approov.http.CordovaApproovHttpPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/com/criticalblue/cordova/approov/http/CordovaApproovHttpPinningVerifier.java"
+                     target-dir="src/com/criticalblue/cordova/approov/http"/>
+        <source-file src="src/android/com/criticalblue/cordova/approov/http/CordovaApproovHttpPlugin.java"
+                     target-dir="src/com/criticalblue/cordova/approov/http"/>
+
+        <framework src="src/android/approov.gradle" custom="true" type="gradleReference"/>
+        <framework src="com.squareup.okhttp3:okhttp-urlconnection:3.14.2"/>
+
+        <resource-file src="approov-sdk/approov-sdk.aar" target="approov-sdk/approov-sdk.aar"/>
+        <resource-file src="approov-sdk/approov-initial.config" target="assets/approov-initial.config"/>
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CordovaApproovHttpPlugin">
+                <param name="ios-package" value="CordovaApproovHttpPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CordovaApproovHttpPlugin.h"/>
+        <source-file src="src/ios/CordovaApproovHttpPlugin.m"/>
+
+        <framework src="approov-sdk/Approov.xcframework" custom="true" embed="true"/>
+
+        <resource-file src="approov-sdk/approov-initial.config" target="approov-initial.config"/>
+
+        <!-- iOS Approov SDK dependency -->
+        <framework src="JavaScriptCore.framework"/>
+        <framework src="UIKit.framework"/>
+        <framework src="Security.framework"/>
+        <framework src="WebKit.framework"/>
+        <framework src="libobjc.A.dylib"/>
+        <framework src="libSystem.B.dylib"/>
+        <framework src="CoreFoundation.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="Foundation.framework"/>
+    </platform>
+
+</plugin>
+
