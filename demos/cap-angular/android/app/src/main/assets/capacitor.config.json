@@ -1,0 +1,17 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "test-cor",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "windowsAndroidStudioPath": "C:\\Users\\Shivang\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\201.7042882\\bin\\studio64.exe",
+  "server": {
+    "cleartext": true
+  }
+}
