@@ -1,0 +1,7 @@
+{
+  "name": "cap-vue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}

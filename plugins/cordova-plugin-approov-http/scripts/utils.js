@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const AdmZip = require('adm-zip');
 const {execSync} = require('child_process');
 
 module.exports = {
@@ -40,6 +41,64 @@ module.exports = {
             await this.executeCommand('approov', 'whoami');
         } catch (e) {
             rejectCallback('Please setup Approov CLI before installing this plugin.', e);
+        }
+    },
+
+    /**
+     * Fetches the approov initial config file in the approov-sdk directory
+     *
+     * @param {string} path
+     * @param {Function} rejectCallback
+     * @returns {Promise<void>}
+     */
+    async addInitialConfig(path, rejectCallback) {
+        await this.ensureApproovExists(rejectCallback);
+
+        try {
+            await this.executeCommand('approov', 'sdk', '-getConfig', `${path}/approov-initial.config`);
+            console.log('Successfully added approov config.');
+        } catch (e) {
+            rejectCallback('Unable to add Approov Initial Config.');
+        }
+    },
+
+    /**
+     * Fetches the approov.aar library and saves it in the approov-sdk directory
+     *
+     * @param {string} path
+     * @param {Function} rejectCallback
+     *
+     * @returns {Promise<void>}
+     */
+    async addAndroidSdk(path, rejectCallback) {
+        await this.ensureApproovExists(rejectCallback);
+
+        try {
+            await this.executeCommand('approov', 'sdk', '-getLibrary', `${path}/approov-sdk.aar`);
+            console.log('Successfully Added Approov SDK for android');
+        } catch (e) {
+            console.log('Add Approov SDK error => ', e);
+            rejectCallback('Unable to add Approov SDK for android..');
+        }
+    },
+
+    /**
+     *
+     * @param {string} path
+     * @param {Function} rejectCallback
+     *
+     * @returns {Promise<void>}
+     */
+    async addIosSdk(path, rejectCallback) {
+        await this.ensureApproovExists(rejectCallback);
+        try {
+            await this.executeCommand('approov', 'sdk', '-getLibrary', `${path}/approov-sdk.zip`);
+            const zip = new AdmZip(`${path}/approov-sdk.zip`);
+            zip.extractAllTo(`${path}/`, true);
+            console.log('Installed IOS Approov SDK');
+        } catch (e) {
+            console.log('Add Approov SDK error => ', e);
+            rejectCallback('Unable to add Approov SDK for IOS..');
         }
     },
 

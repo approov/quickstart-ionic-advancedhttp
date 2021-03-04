@@ -1,0 +1,14 @@
+{
+  "appId": "io.ionic.cap.react",
+  "appName": "Approov React",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "windowsAndroidStudioPath": "C:\\Users\\Shivang\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\201.7042882\\bin\\studio64.exe"
+}

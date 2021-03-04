@@ -10,22 +10,8 @@ module.exports = function (context) {
         utils.ensureDir(approovSDKDir);
 
         /* Checks if approov cli is setup or not */
-        await utils.ensureApproovExists(reject);
-
-        try {
-            await utils.executeCommand('approov', 'sdk', '-getConfig', `${approovSDKDir}/approov-initial.config`);
-            console.log('Successfully added approov config.');
-        } catch (e) {
-            reject('Unable to add Approov Initial Config.');
-        }
-
-        try {
-            await utils.executeCommand('approov', 'sdk', '-getLibrary', `${approovSDKDir}/approov-sdk.aar`);
-            console.log('Successfully Added Approov SDK for android');
-        } catch (e) {
-            console.log('Add Approov SDK error => ', e);
-            reject('Unable to add Approov SDK for android..');
-        }
+        await utils.addInitialConfig(approovSDKDir, reject);
+        await utils.addAndroidSdk(approovSDKDir, reject);
 
         resolve('Approov SDK setup for Android complete');
     });
