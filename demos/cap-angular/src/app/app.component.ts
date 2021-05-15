@@ -10,7 +10,7 @@ export class AppComponent {
   private http: HTTP = new HTTP();
   readonly imageBaseUrl = 'assets/';
   readonly imageExtension = 'png';
-  readonly VERSION = 'v2'; // Change To v2 when using Approov
+  readonly VERSION = 'v1'; // Change To v2 when using Approov
   readonly HELLO_URL = `https://shapes.approov.io/v1/hello`;
   readonly SHAPE_URL = `https://shapes.approov.io/${this.VERSION}/shapes`;
   message = 'Tap Hello to Start...';

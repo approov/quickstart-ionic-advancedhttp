@@ -55,8 +55,25 @@
     <source-file src="src/ios/AFNetworking/AFURLResponseSerialization.m"/>
     <source-file src="src/ios/AFNetworking/AFURLSessionManager.m"/>
     <source-file src="src/ios/SDNetworkActivityIndicator/SDNetworkActivityIndicator.m"/>
+
+    <framework src="JavaScriptCore.framework"/>
+    <framework src="UIKit.framework"/>
     <framework src="Security.framework"/>
+    <framework src="WebKit.framework"/>
+    <framework src="libobjc.A.dylib"/>
+    <framework src="libSystem.B.dylib"/>
+    <framework src="CoreFoundation.framework"/>
+    <framework src="CoreGraphics.framework"/>
     <framework src="SystemConfiguration.framework"/>
+    <framework src="Foundation.framework"/>
+
+<!--    <podspec>-->
+<!--      <config>-->
+<!--      </config>-->
+<!--      <pods use-frameworks="true">-->
+<!--        <pod name="approov-ios-sdk" git="https://github.com/approov/approov-ios-sdk.git" />-->
+<!--      </pods>-->
+<!--    </podspec>-->
   </platform>
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
