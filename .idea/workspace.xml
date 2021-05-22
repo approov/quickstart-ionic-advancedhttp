@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="558513ae-23c8-4d1d-b40e-41860dabb7a5" name="Default Changelist" comment="- Added missing angular demo&#10;- Remove .idea files">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/quickstart-cordova-advancedhttp.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demos/cap-vue/android/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demos/cap-vue/android/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.github/ISSUE_TEMPLATE/--bug-report.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.github/ISSUE_TEMPLATE/--feature-request.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.github/ISSUE_TEMPLATE/--support-question.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.github/workflows/ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.github/workflows/codeql-analysis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/cordova-plugin-advanced-http-3.1.1.tgz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/hooks/android/appAndroidAfterBuild.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/hooks/android/appAndroidBeforePluginInstall.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/hooks/postinstall.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/hooks/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/build-test-app.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/release.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/test-app.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/update-e2e-client-cert.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/update-e2e-server-cert.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/update-plugin-xml.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/update-tough-cookie.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/upload-browserstack.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/scripts/upload-saucelabs.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/approov.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/approov/ApproovHttpPinningVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/approov/ApproovHttpPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaClientAuth.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpDownload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpRequestInterceptors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaHttpUpload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaObservableCallbackContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp/CordovaServerTrust.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/http/HttpBodyDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/http/HttpRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/http/JsonUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/http/KeyChainKeyManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/http/TLSConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/http/TLSSocketFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/browser/cordova-http-plugin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFHTTPSessionManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFHTTPSessionManager.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFNetworkReachabilityManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFNetworkReachabilityManager.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFNetworking.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFSecurityPolicy.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFSecurityPolicy.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFURLRequestSerialization.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFURLRequestSerialization.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFURLResponseSerialization.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFURLResponseSerialization.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFURLSessionManager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/AFNetworking/AFURLSessionManager.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/BinaryRequestSerializer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/BinaryRequestSerializer.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/BinaryResponseSerializer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/BinaryResponseSerializer.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/CordovaHttpPlugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/CordovaHttpPlugin.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/SDNetworkActivityIndicator/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/SDNetworkActivityIndicator/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/SDNetworkActivityIndicator/SDNetworkActivityIndicator.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/SDNetworkActivityIndicator/SDNetworkActivityIndicator.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/TextRequestSerializer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/TextRequestSerializer.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/TextResponseSerializer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/ios/TextResponseSerializer.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/network_security_config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/www/certificates/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/www/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/www/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/www/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-app-template/www/res/cordova_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-specs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-tooling/caps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-tooling/logging.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-tooling/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/e2e-tooling/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/js-specs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/mocks/Blob.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/mocks/Console.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/mocks/File.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/mocks/FileReader.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/test/mocks/FormData.mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/advanced-http.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/cookie-handler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/dependency-validator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/error-codes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/global-configs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/helpers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/js-util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/local-storage-store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/lodash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/messages.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/ponyfills.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/public-interface.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/umd-tough-cookie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/www/url-util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/hooks/android/appAndroidAfterBuild.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/hooks/android/appAndroidBeforePluginInstall.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/hooks/postinstall.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/hooks/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/src/android/approov.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/src/android/com/silkimen/approov/ApproovHttpPinningVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/src/android/com/silkimen/approov/ApproovHttpPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/src/android/com/silkimen/cordovahttp/CordovaHttpRequestInterceptors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/capacitor.build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/app/capacitor.build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/assets/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/java/io/ionic/starter/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-land-hdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-land-mdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-land-xhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-land-xxhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-land-xxxhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-port-hdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-port-mdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-port-xhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-port-xxhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-port-xxxhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/drawable/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/xml/config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/main/res/xml/file_paths.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/capacitor.settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/capacitor.settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/android/variables.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-angular/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-angular/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-angular/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-angular/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-angular/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-angular/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-react/android/app/capacitor.build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/android/app/capacitor.build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-react/android/app/src/main/assets/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/android/app/src/main/assets/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-react/android/app/src/main/res/xml/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/android/app/src/main/res/xml/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-react/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-react/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-react/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-vue/android/app/src/main/assets/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/app/src/main/assets/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-vue/android/app/src/main/res/xml/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/android/app/src/main/res/xml/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-vue/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/cap-vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/demos/cap-vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/cordova-plugin-advanced-http-2.5.1.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/cordova-plugin-advanced-http-2.5.1.tgz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/src/android/com/silkimen/cordovahttp/CordovaHttpPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/src/android/com/silkimen/cordovahttp/CordovaHttpPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/www/public-interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http/www/public-interface.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ionic/ionic-native/.husky/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ionic/ionic-native/.husky/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Ionic/ionic-native/scripts/tasks/publish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ionic/ionic-native/scripts/tasks/publish.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="DarkyenusTimeTracker">
+    <option name="totalTimeSeconds" value="62415" />
+    <option name="idleThresholdMs" value="600000" />
+    <option name="autoCountIdleSeconds" value="600" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="1ojjPa1ce7EqUfl6wtLQhRRyHNf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="excluded.www.directory" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="16.1.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="15.3.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/plugins/cordova-plugin-advanced-http-master/src/android/com/silkimen/cordovahttp" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Program Files\nodejs\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="ts.external.directory.path" value="C:\Projects\Ionic\ionic-native\node_modules\typescript\lib" />
+    <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/../cordova-plugin-advanced-http" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http-master\src\android\com\silkimen\cordovahttp" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http\src\android\com\silkimen\cordovahttp" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http-master\src\android\com\silkimen" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http-master" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http\src\android\com\silkimen" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http-master\src\android" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-advanced-http\hooks" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\demos" />
+      <recent name="C:\Projects\Cordova\quickstart-cordova-advancedhttp\plugins\cordova-plugin-approov-http\scripts\android" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npmpub">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../../Ionic/ionic-native/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npmpub" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../../Ionic/ionic-native/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="npmpub" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="prebuild" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../../Ionic/ionic-native/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prebuild" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.npmpub" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.prebuild" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="558513ae-23c8-4d1d-b40e-41860dabb7a5" name="Default Changelist" comment="" />
+      <created>1613806873709</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613806873709</updated>
+      <workItem from="1613806878619" duration="23698000" />
+      <workItem from="1613897555324" duration="114000" />
+      <workItem from="1614305022850" duration="2053000" />
+      <workItem from="1614307123015" duration="27000" />
+      <workItem from="1614319836408" duration="419000" />
+      <workItem from="1614405256575" duration="5399000" />
+      <workItem from="1614423654633" duration="3713000" />
+      <workItem from="1614428548918" duration="107000" />
+      <workItem from="1614430436477" duration="410000" />
+      <workItem from="1614431690236" duration="11007000" />
+      <workItem from="1614447755338" duration="175000" />
+      <workItem from="1614875461457" duration="745000" />
+      <workItem from="1620827635398" duration="955000" />
+      <workItem from="1621225156289" duration="3751000" />
+      <workItem from="1621241742893" duration="401000" />
+      <workItem from="1621258318972" duration="2489000" />
+      <workItem from="1621264180532" duration="44000" />
+      <workItem from="1621321513157" duration="764000" />
+      <workItem from="1621621958690" duration="22580000" />
+    </task>
+    <task id="LOCAL-00001" summary="- Copy advanced-http-plugin from previous cordova project&#10;- Add android hooks to automatically include approov-sdk.aar and register debug application install on a device.&#10;- :WIP hooks to automatically add approov sdk in ionic capacitor">
+      <created>1614306189565</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614306189565</updated>
+    </task>
+    <task id="LOCAL-00002" summary="- Copy advanced-http-plugin from previous cordova project&#10;- Add android hooks to automatically include approov-sdk.aar and register debug application install on a device.&#10;- :WIP hooks to automatically add approov sdk in ionic capacitor">
+      <created>1614306553912</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614306553912</updated>
+    </task>
+    <task id="LOCAL-00003" summary="- Create Demo for Angular Capacitor, React Capacitor, Vue Capacitor,&#10;- Add post install hooks">
+      <created>1614875674965</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614875674965</updated>
+    </task>
+    <task id="LOCAL-00004" summary="- Added missing angular demo&#10;- Remove .idea files">
+      <created>1614876195612</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614876195612</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TerminalProjectNonSharedOptionsProvider">
+    <envs>
+      <env key="APPROOV_MANAGEMENT_TOKEN" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI0Njk1MzQxMzgsImlzcyI6ImFwcHJvb3YiLCJlbWwiOiJzaGl2YW5nLnNlaGdhbGxAZ21haWwuY29tIiwidXNyIjoic2hpdmFuZyIsImNzdCI6InNoaXZhbmciLCJybHMiOiJ0IiwidXJsIjoibGlmZmV5LWV3MS5hcHByb292ci5pbyJ9.EVIXx2_dRUVfv3-9V7bU8MGRp7Hd9BxYX5Kmp0BNFcE" />
+    </envs>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="- Copy advanced-http-plugin from previous cordova project&#10;- Add android hooks to automatically include approov-sdk.aar and register debug application install on a device.&#10;- :WIP hooks to automatically add approov sdk in ionic capacitor" />
+    <MESSAGE value="- Create Demo for Angular Capacitor, React Capacitor, Vue Capacitor,&#10;- Add post install hooks" />
+    <MESSAGE value="- Added missing angular demo&#10;- Remove .idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added missing angular demo&#10;- Remove .idea files" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

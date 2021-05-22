@@ -1,21 +1,30 @@
-import { Component } from '@angular/core';
-import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
+import { Component, OnInit } from '@angular/core';
+import { HTTP, HTTPResponse } from '@ionic-native/approov-advanced-http/ngx';
+import { ApproovLoggableToken } from '@ionic-native/approov-advanced-http';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private http: HTTP = new HTTP();
   readonly imageBaseUrl = 'assets/';
   readonly imageExtension = 'png';
+  readonly host = 'https://shapes.approov.io';
   readonly VERSION = 'v2'; // Change To v2 when using Approov
-  readonly HELLO_URL = `https://shapes.approov.io/v1/hello`;
-  readonly SHAPE_URL = `https://shapes.approov.io/${this.VERSION}/shapes`;
+  readonly HELLO_URL = `${this.host}/v1/hello`;
+  readonly SHAPE_URL = `${this.host}/${this.VERSION}/shapes`;
   message = 'Tap Hello to Start...';
   imageUrl = this.getImageUrl('approov');
   isLoading = false;
+  loggableToken: ApproovLoggableToken;
+
+  ngOnInit(): void {
+    if (this.isApproov()) {
+      this.http.initializeApproov();
+    }
+  }
 
   async onHelloClick() {
     this.presentLoadingIndicator();
@@ -41,6 +50,10 @@ export class AppComponent {
     } catch (err) {
       this.onAPIError(err);
     }
+
+    if (this.isApproov()) {
+      this.loggableToken = await this.http.getApproovLoggableToken(this.host);
+    }
   }
 
   getImageUrl(name: string): string {
@@ -49,8 +62,12 @@ export class AppComponent {
 
   private onAPIError(err: HTTPResponse) {
     this.hideLoadingIndicator();
-    const error = JSON.parse(err.error);
-    this.message = `Status Code: ${err.status}, ${error.status}`;
+    try {
+      const error = JSON.parse(err.error);
+      this.message = `Status Code: ${err.status}, ${error.status}`;
+    } catch {
+      this.message = `Status Code: ${err.status}, ${err.error}`;
+    }
     this.imageUrl = this.getImageUrl('confused');
   }
 
@@ -62,5 +79,10 @@ export class AppComponent {
 
   private hideLoadingIndicator() {
     this.isLoading = false;
+    this.loggableToken = undefined;
+  }
+
+  private isApproov(): boolean {
+    return this.VERSION === 'v2';
   }
 }

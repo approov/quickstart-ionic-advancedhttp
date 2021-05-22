@@ -59,6 +59,10 @@
     <framework src="SystemConfiguration.framework"/>
   </platform>
   <platform name="android">
+    <hook type="before_plugin_install" src="hooks/android/appAndroidBeforePluginInstall.js"/>
+    <hook type="after_build" src="hooks/android/appAndroidAfterBuild.js"/>
+    <hook type="before_deploy" src="hooks/android/appAndroidAfterBuild.js"/>
+
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="CordovaHttpPlugin">
         <param name="android-package" value="com.silkimen.cordovahttp.CordovaHttpPlugin"/>
@@ -66,13 +70,16 @@
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest">
       <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     </config-file>
+
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaClientAuth.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpBase.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpDownload.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpOperation.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpPlugin.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpResponse.java" target-dir="src/com/silkimen/cordovahttp"/>
+    <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpRequestInterceptors.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaHttpUpload.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/cordovahttp/CordovaServerTrust.java" target-dir="src/com/silkimen/cordovahttp"/>
     <source-file src="src/android/com/silkimen/http/HttpBodyDecoder.java" target-dir="src/com/silkimen/http"/>
@@ -83,7 +90,16 @@
     <source-file src="src/android/com/silkimen/http/OkConnectionFactory.java" target-dir="src/com/silkimen/http"/>
     <source-file src="src/android/com/silkimen/http/TLSConfiguration.java" target-dir="src/com/silkimen/http"/>
     <source-file src="src/android/com/silkimen/http/TLSSocketFactory.java" target-dir="src/com/silkimen/http"/>
-    <preference name="OKHTTP_VERSION" default="3.14.0"/>
+
+    <source-file src="src/android/com/silkimen/approov/ApproovHttpPinningVerifier.java" target-dir="src/com/silkimen/approov"/>
+    <source-file src="src/android/com/silkimen/approov/ApproovHttpPlugin.java" target-dir="src/com/silkimen/approov"/>
+
+    <framework src="src/android/approov.gradle" custom="true" type="gradleReference"/>
+
+    <resource-file src="approov-sdk/approov-sdk.aar" target="approov-sdk/approov-sdk.aar"/>
+    <resource-file src="approov-sdk/approov-initial.config" target="assets/approov-initial.config"/>
+
+    <preference name="OKHTTP_VERSION" default="3.14.2"/>
     <framework src="com.squareup.okhttp3:okhttp-urlconnection:$OKHTTP_VERSION"/>
   </platform>
   <platform name="browser">

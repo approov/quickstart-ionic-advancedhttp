@@ -30,6 +30,9 @@ module.exports = function init(exec, cookieHandler, urlUtil, helpers, globalConf
     options: options,
     uploadFile: uploadFile,
     downloadFile: downloadFile,
+    initializeApproov: initializeApproov,
+    approovSetDataHashInToken: approovSetDataHashInToken,
+    approovSetBindingHeader: approovSetBindingHeader,
     ErrorCode: errorCodes,
     ponyfills: ponyfills
   };

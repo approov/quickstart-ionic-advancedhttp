@@ -1,8 +1,10 @@
 <template>
   <ion-app>
-    <ion-toolbar class="ion-text-center">
-      <ion-title>Approov Vue Demo</ion-title>
-    </ion-toolbar>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="ion-text-center">Approov Vue</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
     <ion-content>
       <ion-grid style="height: 100%">
@@ -14,6 +16,7 @@
             <ion-img :src="imageUrl" style="margin: 0 30px"></ion-img>
             <ion-spinner v-if="isLoading" name="crescent"></ion-spinner>
             <p>{{ message }}</p>
+            <p v-if="loggableToken">{{ loggableToken }}</p>
           </div>
         </ion-row>
         <ion-row>
@@ -47,16 +50,22 @@ import {
   IonGrid,
   IonRow,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonHeader
 } from '@ionic/vue';
 import {defineComponent} from 'vue';
-import {HTTP, HTTPResponse} from '@ionic-native/http';
+import {HTTP, HTTPResponse} from '@ionic-native/approov-advanced-http';
 
+const HOST = 'https://shapes.approov.io';
 const imageBaseUrl = 'assets/';
 const imageExtension = 'png';
 const VERSION = 'v2'; // Change To v2 when using Approov
-const HELLO_URL = `https://shapes.approov.io/v1/hello`;
-const SHAPE_URL = `https://shapes.approov.io/${VERSION}/shapes`;
+const HELLO_URL = `${HOST}/v1/hello`;
+const SHAPE_URL = `${HOST}/${VERSION}/shapes`;
+
+function isApproov(): boolean {
+  return VERSION === 'v2';
+}
 
 export default defineComponent({
   name: 'App',
@@ -68,14 +77,23 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
+    IonHeader
   },
   data() {
     return {
       imageUrl: this.getImageUrl('approov'),
       message: 'Tap Hello to Start...',
       isLoading: false,
+      loggableToken: ''
     };
   },
+
+  created() {
+    if (isApproov()) {
+      HTTP.initializeApproov();
+    }
+  },
+
   methods: {
     async onHelloClick() {
       this.presentLoadingIndicator();
@@ -101,6 +119,11 @@ export default defineComponent({
       } catch (err) {
         this.onAPIError(err);
       }
+
+      if (isApproov()) {
+        console.log('Approoc Roken => ', JSON.stringify(await HTTP.getApproovLoggableToken(HOST), null, 2))
+        this.loggableToken = JSON.stringify(await HTTP.getApproovLoggableToken(HOST), null, 2);
+      }
     },
 
     getImageUrl(name: string): string {
@@ -115,13 +138,21 @@ export default defineComponent({
 
     onAPIError(err: HTTPResponse) {
       this.hideLoadingIndicator();
-      const error = JSON.parse(err.error as any);
-      this.message = `Status Code: ${err.status}, ${error.status}`;
+      let message: string;
+      try {
+        const error = JSON.parse(err.error as string);
+        message = `Status Code: ${err.status}, ${error.status}`;
+      } catch {
+        message = `Status Code: ${err.status}, ${err.error}`;
+      }
+
+      this.message = message;
       this.imageUrl = this.getImageUrl('confused');
     },
 
     hideLoadingIndicator() {
       this.isLoading = false;
+      this.loggableToken = '';
     }
   },
 });

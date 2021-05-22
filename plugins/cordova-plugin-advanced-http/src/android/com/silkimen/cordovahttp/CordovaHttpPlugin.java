@@ -2,6 +2,7 @@ package com.silkimen.cordovahttp;
 
 import java.security.KeyStore;
 
+import com.silkimen.approov.ApproovHttpPlugin;
 import com.silkimen.http.TLSConfiguration;
 
 import org.apache.cordova.CallbackContext;
@@ -21,12 +22,15 @@ public class CordovaHttpPlugin extends CordovaPlugin {
   private static final String TAG = "Cordova-Plugin-HTTP";
 
   private TLSConfiguration tlsConfiguration;
+  private ApproovHttpPlugin approovPlugin;
 
   @Override
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
+    ApproovHttpPlugin.cordovaStatic = cordova;
 
     this.tlsConfiguration = new TLSConfiguration();
+    this.approovPlugin = new ApproovHttpPlugin();
 
     try {
       KeyStore store = KeyStore.getInstance("AndroidCAStore");
@@ -55,6 +59,14 @@ public class CordovaHttpPlugin extends CordovaPlugin {
       return this.executeHttpRequestWithoutData(action, args, callbackContext);
     } else if ("head".equals(action)) {
       return this.executeHttpRequestWithoutData(action, args, callbackContext);
+    } else if ("initializeApproov".equals(action)) {
+      return this.initializeApproov();
+    } else if ("getLoggableApproovToken".equals(action)) {
+      return false; // this.getLoggableApproovToken(action, args, callbackContext);
+    } else if ("approovSetDataHashInToken".equals(action)) {
+      return this.approovSetDataHashInToken(args.getString(0), callbackContext);
+    } else if ("approovSetBindingHeader".equals(action)) {
+      return this.approovSetBindingHeader(args.getString(0), callbackContext);
     } else if ("delete".equals(action)) {
       return this.executeHttpRequestWithoutData(action, args, callbackContext);
     } else if ("options".equals(action)) {
@@ -76,6 +88,22 @@ public class CordovaHttpPlugin extends CordovaPlugin {
     } else {
       return false;
     }
+  }
+
+  public boolean initializeApproov() {
+    ApproovHttpPlugin.initializeApproov();
+    CordovaHttpPlugin.addRequestInterceptor(ApproovHttpPlugin.approovProtect);
+    return true;
+  }
+
+  public boolean approovSetDataHashInToken(String data, CallbackContext callbackContext) {
+    this.approovPlugin.setDataHashInToken(data, callbackContext);
+    return true;
+  }
+
+  public boolean approovSetBindingHeader(String header, CallbackContext callbackContext) {
+    this.approovPlugin.setBindingHeader(header, callbackContext);
+    return true;
   }
 
   // Public interface type for request interceptors

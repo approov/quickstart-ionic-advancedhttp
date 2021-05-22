@@ -9,6 +9,7 @@ import {
   IonImg,
   IonSpinner,
   IonButton,
+  IonHeader,
 } from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
@@ -30,21 +31,27 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { Component } from "react";
-import { HTTP, HTTPResponse } from "@ionic-native/http";
+import {
+  ApproovLoggableToken,
+  HTTP,
+  HTTPResponse,
+} from "@ionic-native/approov-advanced-http";
 
 interface AppState {
   message: string;
   imageUrl: string;
   isLoading: boolean;
+  loggableToken?: ApproovLoggableToken;
 }
 
 export class App extends Component<any, AppState> {
   private http = HTTP;
+  readonly host = "https://shapes.approov.io";
   readonly imageBaseUrl = "assets/";
   readonly imageExtension = "png";
   readonly VERSION = "v2"; // Change To v2 when using Approov
-  readonly HELLO_URL = `https://shapes.approov.io/v1/hello`;
-  readonly SHAPE_URL = `https://shapes.approov.io/${this.VERSION}/shapes`;
+  readonly HELLO_URL = `${this.host}/v1/hello`;
+  readonly SHAPE_URL = `${this.host}/${this.VERSION}/shapes`;
 
   constructor(props: any) {
     super(props);
@@ -53,6 +60,10 @@ export class App extends Component<any, AppState> {
       isLoading: false,
       imageUrl: this.getImageUrl("approov"),
     };
+
+    if (this.isApproov()) {
+      this.http.initializeApproov();
+    }
   }
 
   async onHelloClick() {
@@ -79,9 +90,17 @@ export class App extends Component<any, AppState> {
       this.setState({
         message: data.status,
         imageUrl: this.getImageUrl(data.shape.toLowerCase()),
+        loggableToken: this.isApproov()
+          ? await this.http.getApproovLoggableToken(this.host)
+          : undefined,
       });
     } catch (err) {
       this.onAPIError(err);
+      if (this.isApproov()) {
+        this.setState({
+          loggableToken: await this.http.getApproovLoggableToken(this.host),
+        });
+      }
     }
   }
 
@@ -91,9 +110,16 @@ export class App extends Component<any, AppState> {
 
   private onAPIError(err: HTTPResponse) {
     this.hideLoadingIndicator();
-    const error = JSON.parse(err.error as any);
+    let message: string;
+    try {
+      const error = JSON.parse(err.error as string);
+      message = `Status Code: ${err.status}, ${error.status}`;
+    } catch {
+      message = `Status Code: ${err.status}, ${err.error}`;
+    }
+
     this.setState({
-      message: `Status Code: ${err.status}, ${error.status}`,
+      message,
       imageUrl: this.getImageUrl("confused"),
     });
   }
@@ -107,15 +133,21 @@ export class App extends Component<any, AppState> {
   }
 
   private hideLoadingIndicator() {
-    this.setState({ isLoading: false });
+    this.setState({ isLoading: false, loggableToken: undefined });
+  }
+
+  private isApproov(): boolean {
+    return this.VERSION === "v2";
   }
 
   render() {
     return (
       <IonApp>
-        <IonToolbar>
-          <IonTitle>Approov React Demo</IonTitle>
-        </IonToolbar>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle className="ion-text-center">Approov React</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
         <IonContent>
           <IonGrid className="full-height">
@@ -124,6 +156,9 @@ export class App extends Component<any, AppState> {
                 <IonImg className="image" src={this.state.imageUrl} />
                 {this.state.isLoading && <IonSpinner name="crescent" />}
                 <p>{this.state.message}</p>
+                {this.state.loggableToken && (
+                  <p> {JSON.stringify(this.state.loggableToken, null, 2)} </p>
+                )}
               </div>
             </IonRow>
             <IonRow>

@@ -1,5 +1,7 @@
 <ion-app>
-  <ion-toolbar class="ion-text-center">Approov NG</ion-toolbar>
+  <ion-header>
+    <ion-toolbar class="ion-text-center">Approov NG</ion-toolbar>
+  </ion-header>
 
   <ion-content>
     <ion-grid style="height: 100%">
@@ -8,6 +10,8 @@
           <ion-img [src]="imageUrl" style="margin: 0 50px"></ion-img>
           <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
           <p>{{ message }}</p>
+
+          <p *ngIf="loggableToken">{{ loggableToken | json }}</p>
         </div>
       </ion-row>
       <ion-row>
