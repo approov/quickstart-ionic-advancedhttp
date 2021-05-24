@@ -15,8 +15,7 @@ def capacitor_pods
 end
 
 target 'App' do
-  capacitor_pod
+  capacitor_pods
   # Add your Pods here
-  use_frameworks!
-  pod 'approov-ios-sdk', '2.6.1', :source => "https://github.com/approov/approov-ios-sdk.git"
+  pod 'approov-ios-sdk', '2.7.0', :source => "https://github.com/approov/approov-ios-sdk.git"
 end
