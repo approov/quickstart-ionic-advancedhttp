@@ -31,6 +31,7 @@
       </feature>
     </config-file>
     <header-file src="src/ios/CordovaHttpPlugin.h"/>
+    <header-file src="src/ios/ApproovHttpPlugin.h"/>
     <header-file src="src/ios/BinaryRequestSerializer.h"/>
     <header-file src="src/ios/BinaryResponseSerializer.h"/>
     <header-file src="src/ios/TextResponseSerializer.h"/>
@@ -44,6 +45,7 @@
     <header-file src="src/ios/AFNetworking/AFURLSessionManager.h"/>
     <header-file src="src/ios/SDNetworkActivityIndicator/SDNetworkActivityIndicator.h"/>
     <source-file src="src/ios/CordovaHttpPlugin.m"/>
+    <source-file src="src/ios/ApproovHttpPlugin.m"/>
     <source-file src="src/ios/BinaryRequestSerializer.m"/>
     <source-file src="src/ios/BinaryResponseSerializer.m"/>
     <source-file src="src/ios/TextResponseSerializer.m"/>
@@ -55,8 +57,17 @@
     <source-file src="src/ios/AFNetworking/AFURLResponseSerialization.m"/>
     <source-file src="src/ios/AFNetworking/AFURLSessionManager.m"/>
     <source-file src="src/ios/SDNetworkActivityIndicator/SDNetworkActivityIndicator.m"/>
+
+    <framework src="JavaScriptCore.framework"/>
+    <framework src="UIKit.framework"/>
     <framework src="Security.framework"/>
+    <framework src="WebKit.framework"/>
+    <framework src="libobjc.A.dylib"/>
+    <framework src="libSystem.B.dylib"/>
+    <framework src="CoreFoundation.framework"/>
+    <framework src="CoreGraphics.framework"/>
     <framework src="SystemConfiguration.framework"/>
+    <framework src="Foundation.framework"/>
   </platform>
   <platform name="android">
 

@@ -1,0 +1,16 @@
+{
+  "appId": "io.ionic.cap.ng",
+  "appName": "Approov Angular",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "server": {
+    "cleartext": true
+  }
+}

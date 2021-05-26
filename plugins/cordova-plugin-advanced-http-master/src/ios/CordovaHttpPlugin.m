@@ -19,6 +19,9 @@
 - (void)setTimeout:(NSTimeInterval)timeout forManager:(AFHTTPSessionManager*)manager;
 - (void)setRedirect:(bool)redirect forManager:(AFHTTPSessionManager*)manager;
 
+// Types for request and failure interceptors
+typedef void (^RequestFailureInterceptor)(NSURLSessionTask *task, NSError *error);
+typedef void (^RequestInterceptor)(AFHTTPSessionManager *manager, NSString *urlString);
 @end
 
 @implementation CordovaHttpPlugin {
@@ -27,9 +30,61 @@
     NSMutableDictionary *reqDict;
 }
 
+// Lists of request and failure interceptors
+static NSMutableArray<RequestInterceptor>* requestInterceptors = nil;
+static NSMutableArray<RequestFailureInterceptor>* failureInterceptors = nil;
+
+
 - (void)pluginInitialize {
     securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     reqDict = [NSMutableDictionary dictionary];
+}
+
+// Ensure request interceptor and failure interceptor lists exist before the first call to any functions that use them
++ (void)initialize {
+    if (requestInterceptors == nil) {
+        requestInterceptors = [NSMutableArray<RequestInterceptor> array];
+    }
+    if (failureInterceptors == nil) {
+        failureInterceptors = [NSMutableArray<RequestFailureInterceptor> array];
+    }
+}
+
+
+// Add a request interceptor to the list of request interceptors
++ (void)addRequestInterceptor:(RequestInterceptor)requestInterceptor {
+    if (requestInterceptor != nil) {
+        @synchronized(requestInterceptors) {
+            [requestInterceptors insertObject:requestInterceptor atIndex:0];
+        }
+    }
+}
+
+// Apply all request interceptors
+- (void)applyRequestInterceptorsToManager:(AFHTTPSessionManager*)manager URL:(NSString*)urlString {
+    @synchronized(requestInterceptors) {
+        for (RequestInterceptor requestInterceptor in requestInterceptors) {
+            requestInterceptor(manager, urlString);
+        }
+    }
+}
+
+// Add a request failure interceptor to the list of request failure interceptors
++ (void)addRequestFailureInterceptor:(RequestFailureInterceptor)requestFailureInterceptor {
+    if (requestFailureInterceptor != nil) {
+        @synchronized(failureInterceptors) {
+            [failureInterceptors insertObject:requestFailureInterceptor atIndex:0];
+        }
+    }
+}
+
+// Apply all request failure interceptors
+- (void)applyRequestFailureInterceptorsToTask:(NSURLSessionTask*)task error:(NSError*)error {
+    @synchronized(failureInterceptors) {
+        for (RequestFailureInterceptor requestFailureInterceptor in failureInterceptors) {
+            requestFailureInterceptor(task, error);
+        }
+    }
 }
 
 - (void)addRequest:(NSNumber*)reqId forTask:(NSURLSessionDataTask*)task {
@@ -213,6 +268,8 @@
     [[SDNetworkActivityIndicator sharedActivityIndicator] startActivity];
 
     @try {
+        // Call interceptors to allow "last-minute" changes before performing the request
+        [self applyRequestInterceptorsToManager:manager URL:url];
         void (^onSuccess)(NSURLSessionTask *, id) = ^(NSURLSessionTask *task, id responseObject) {
             [weakSelf removeRequest:reqId];
 
@@ -232,6 +289,8 @@
         };
 
         void (^onFailure)(NSURLSessionTask *, NSError *) = ^(NSURLSessionTask *task, NSError *error) {
+            // Call interceptors to allow custom error handling
+            [self applyRequestFailureInterceptorsToTask:task error:error];
             [weakSelf removeRequest:reqId];
 
             NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -275,6 +334,8 @@
     [[SDNetworkActivityIndicator sharedActivityIndicator] startActivity];
 
     @try {
+        // Call interceptors to allow "last-minute" changes before performing the request
+        [self applyRequestInterceptorsToManager:manager URL:url];
         void (^constructBody)(id<AFMultipartFormData>) = ^(id<AFMultipartFormData> formData) {
             NSArray *buffers = [data mutableArrayValueForKey:@"buffers"];
             NSArray *fileNames = [data mutableArrayValueForKey:@"fileNames"];
@@ -322,6 +383,8 @@
         };
 
         void (^onFailure)(NSURLSessionTask *, NSError *) = ^(NSURLSessionTask *task, NSError *error) {
+            // Call interceptors to allow custom error handling
+            [self applyRequestFailureInterceptorsToTask:task error:error];
             [weakSelf removeRequest:reqId];
 
             NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -463,6 +526,8 @@
     [[SDNetworkActivityIndicator sharedActivityIndicator] startActivity];
 
     @try {
+        // Call interceptors to allow "last-minute" changes before performing the request
+        [self applyRequestInterceptorsToManager:manager URL:url];
         NSURLSessionDataTask *task = [manager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             NSError *error;
             for (int i = 0; i < [filePaths count]; i++) {
@@ -492,6 +557,8 @@
             [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
             [[SDNetworkActivityIndicator sharedActivityIndicator] stopActivity];
         } failure:^(NSURLSessionTask *task, NSError *error) {
+            // Call interceptors to allow custom error handling
+            [self applyRequestFailureInterceptorsToTask:task error:error];
             [weakSelf removeRequest:reqId];
 
             NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -533,6 +600,8 @@
     [[SDNetworkActivityIndicator sharedActivityIndicator] startActivity];
 
     @try {
+        // Call interceptors to allow "last-minute" changes before performing the request
+        [self applyRequestInterceptorsToManager:manager URL:url];
         NSURLSessionDataTask *task = [manager GET:url parameters:nil progress: nil success:^(NSURLSessionTask *task, id responseObject) {
             [weakSelf removeRequest:reqId];
             /*
@@ -595,6 +664,8 @@
             [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
             [[SDNetworkActivityIndicator sharedActivityIndicator] stopActivity];
         } failure:^(NSURLSessionTask *task, NSError *error) {
+            // Call interceptors to allow custom error handling
+            [self applyRequestFailureInterceptorsToTask:task error:error];
             [weakSelf removeRequest:reqId];
             NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
             [self handleError:dictionary withResponse:(NSHTTPURLResponse*)task.response error:error];
