@@ -33,9 +33,10 @@ import "./theme/variables.css";
 import { Component } from "react";
 import {
   ApproovLoggableToken,
-  HTTP,
+  ApproovHttp,
   HTTPResponse,
 } from "@ionic-native/approov-advanced-http";
+import React from "react";
 
 interface AppState {
   message: string;
@@ -45,7 +46,7 @@ interface AppState {
 }
 
 export class App extends Component<any, AppState> {
-  private http = HTTP;
+  private http = ApproovHttp;
   readonly host = "https://shapes.approov.io";
   readonly imageBaseUrl = "assets/";
   readonly imageExtension = "png";

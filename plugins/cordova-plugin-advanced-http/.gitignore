@@ -1,9 +1,0 @@
-node_modules/**
-test/e2e-app-template/www/certificates/*.cer
-test/e2e-app-template/www/certificates/*.pkcs
-tags
-.zedstate
-npm-debug.log
-/temp
-/android-sdk-macosx.zip
-/android-sdk-macosx/**

@@ -1,3 +1,4 @@
+source 'https://github.com/approov/approov-ios-sdk.git'
 platform :ios, '11.0'
 use_frameworks!
 
@@ -11,6 +12,8 @@ def capacitor_pods
   pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
+  pod 'CordovaPluginsStatic', :path => '../capacitor-cordova-ios-plugins'
+  pod 'CordovaPluginsResources', :path => '../capacitor-cordova-ios-plugins'
   # Do not delete
 end
 

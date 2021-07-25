@@ -54,7 +54,7 @@ import {
   IonHeader
 } from '@ionic/vue';
 import {defineComponent} from 'vue';
-import {HTTP, HTTPResponse} from '@ionic-native/approov-advanced-http';
+import {ApproovHttp, HTTPResponse} from '@ionic-native/approov-advanced-http';
 
 const HOST = 'https://shapes.approov.io';
 const imageBaseUrl = 'assets/';
@@ -90,7 +90,7 @@ export default defineComponent({
 
   created() {
     if (isApproov()) {
-      HTTP.initializeApproov();
+      ApproovHttp.initializeApproov();
     }
   },
 
@@ -98,7 +98,7 @@ export default defineComponent({
     async onHelloClick() {
       this.presentLoadingIndicator();
       try {
-        const response = await HTTP.get(HELLO_URL, {}, {});
+        const response = await ApproovHttp.get(HELLO_URL, {}, {});
         this.hideLoadingIndicator();
         const data = JSON.parse(response.data);
         this.message = data.text;
@@ -111,7 +111,7 @@ export default defineComponent({
     async onShapeClick() {
       this.presentLoadingIndicator();
       try {
-        const response = await HTTP.get(SHAPE_URL, {}, {});
+        const response = await ApproovHttp.get(SHAPE_URL, {}, {});
         this.hideLoadingIndicator();
         const data = JSON.parse(response.data);
         this.message = data.status;
@@ -121,8 +121,7 @@ export default defineComponent({
       }
 
       if (isApproov()) {
-        console.log('Approoc Roken => ', JSON.stringify(await HTTP.getApproovLoggableToken(HOST), null, 2))
-        this.loggableToken = JSON.stringify(await HTTP.getApproovLoggableToken(HOST), null, 2);
+        this.loggableToken = JSON.stringify(await ApproovHttp.getApproovLoggableToken(HOST), null, 2);
       }
     },
 

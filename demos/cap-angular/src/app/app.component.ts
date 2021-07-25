@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HTTP, HTTPResponse } from '@ionic-native/approov-advanced-http/ngx';
+import { ApproovHttp, HTTPResponse } from '@ionic-native/approov-advanced-http/ngx';
 import { ApproovLoggableToken } from '@ionic-native/approov-advanced-http';
 
 @Component({
@@ -8,7 +8,7 @@ import { ApproovLoggableToken } from '@ionic-native/approov-advanced-http';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  private http: HTTP = new HTTP();
+  private http: ApproovHttp = new ApproovHttp();
   readonly imageBaseUrl = 'assets/';
   readonly imageExtension = 'png';
   readonly host = 'https://shapes.approov.io';

@@ -5,7 +5,8 @@
   "dependencies": {
     "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
-    "@ionic-native/approov-advanced-http": "^5.33.0",
+    "@capacitor/ios": "^2.4.6",
+    "@ionic-native/approov-advanced-http": "file:../../ionic-native-approov-advanced-http-5.33.1.tgz",
     "@ionic-native/core": "^5.31.1",
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
@@ -18,7 +19,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
-    "cordova-plugin-advanced-http": "file:../../plugins/cordova-plugin-advanced-http-master/cordova-plugin-advanced-http-3.1.1.tgz",
+    "cordova-plugin-approov-advanced-http": "file:../../plugins/approov-advanced-http/cordova-plugin-approov-advanced-http-3.1.1.tgz",
     "cordova-plugin-file": "^6.0.2",
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
