@@ -1,16 +1,9 @@
-Cordova Advanced HTTP
+Approov Advanced HTTP
 =====================
-[![npm version](https://img.shields.io/npm/v/cordova-plugin-advanced-http)](https://www.npmjs.com/package/cordova-plugin-advanced-http?activeTab=versions)
-[![MIT Licence](https://img.shields.io/badge/license-MIT-blue?style=flat)](https://opensource.org/licenses/mit-license.php)
-[![downloads/month](https://img.shields.io/npm/dm/cordova-plugin-advanced-http.svg)](https://www.npmjs.com/package/cordova-plugin-advanced-http)
 
-[![Travis Build Status](https://img.shields.io/travis/silkimen/cordova-plugin-advanced-http/master?label=Travis%20CI)](https://travis-ci.org/silkimen/cordova-plugin-advanced-http)
-[![GitHub Build Status](https://img.shields.io/github/workflow/status/silkimen/cordova-plugin-advanced-http/Cordova%20HTTP%20Plugin%20CI/master?label=GitHub%20Actions)](https://github.com/silkimen/cordova-plugin-advanced-http/actions)
+This plugin is a fork of [Silkimen's cordova-plugin-advanced-http](https://github.com/silkimen/cordova-plugin-advanced-http).
 
-
-Cordova / Phonegap plugin for communicating with HTTP servers.  Supports iOS, Android and [Browser](#browserSupport).
-
-This is a fork of [Wymsee's Cordova-HTTP plugin](https://github.com/wymsee/cordova-HTTP).
+This plugin follows the same versioning as that of original silkimen's plugin.
 
 ## Advantages over Javascript requests
 
@@ -18,6 +11,8 @@ This is a fork of [Wymsee's Cordova-HTTP plugin](https://github.com/wymsee/cordo
  - CORS restrictions do not apply
  - X.509 client certificate based authentication
  - Handling of HTTP code 401 - read more at [Issue CB-2415](https://issues.apache.org/jira/browse/CB-2415)
+ - Added Approov API protection.
+ - Implement Approov dynamic SSL pinning.
 
 ## Updates
 

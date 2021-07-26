@@ -50,7 +50,7 @@ export class App extends Component<any, AppState> {
   readonly host = "https://shapes.approov.io";
   readonly imageBaseUrl = "assets/";
   readonly imageExtension = "png";
-  readonly VERSION = "v2"; // Change To v2 when using Approov
+  readonly VERSION = "v1"; // Change To v2 when using Approov
   readonly HELLO_URL = `${this.host}/v1/hello`;
   readonly SHAPE_URL = `${this.host}/${this.VERSION}/shapes`;
 
