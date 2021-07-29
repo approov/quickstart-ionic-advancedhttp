@@ -59,7 +59,7 @@ import {ApproovHttp, HTTPResponse} from '@ionic-native/approov-advanced-http';
 const HOST = 'https://shapes.approov.io';
 const imageBaseUrl = 'assets/';
 const imageExtension = 'png';
-const VERSION = 'v1'; // Change To v2 when using Approov
+const VERSION = 'v1' as string; // Change To v2 when using Approov
 const HELLO_URL = `${HOST}/v1/hello`;
 const SHAPE_URL = `${HOST}/${VERSION}/shapes`;
 
