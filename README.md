@@ -285,7 +285,7 @@ If you are getting this error then you are using an older version of cocoapods. 
 If you are facing this error then please check out building for iOS at the top. It's occurs in SDK versions that are not in production.
 Make sure you've added this `source 'https://github.com/approov/approov-ios-sdk.git'` at the top of `ios/App/PodFile`.
 
-And then executed:
+And then execute:
 
 ```bash
 rm -f PodFile.lock
@@ -293,3 +293,17 @@ pod install --repo-update
 ```
 
 If this error persists then please open an issue.
+
+> [!] No podspec found for `CordovaPlugins` in `../capacitor-cordova-ios-plugins` 
+
+*or*
+
+> /quickstart-ionic-advancedhttp/demos/cap-angular/android/capacitor-cordova-android-plugins/cordova.variables.gradle' as it does not exist.
+ 
+If you are facing this error then please sync the ios/android dependencies using: 
+
+```bash
+ionic cap sync ios
+# For Android please execute 
+ionic cap sync android
+```
