@@ -22,7 +22,7 @@
     "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
     "@capacitor/ios": "^2.4.6",
-    "@ionic-native/approov-advanced-http": "file:../../ionic-native-approov-advanced-http-5.33.1.tgz",
+    "@ionic-native/approov-advanced-http": "^5.35.0",
     "@ionic-native/core": "^5.31.1",
     "@ionic/angular": "^5.5.2",
     "cordova-plugin-approov-advanced-http": "file:../../plugins/approov-advanced-http/cordova-plugin-approov-advanced-http-3.1.1.tgz",

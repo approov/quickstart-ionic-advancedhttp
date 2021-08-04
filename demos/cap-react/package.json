@@ -6,7 +6,7 @@
     "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
     "@capacitor/ios": "^2.4.6",
-    "@ionic-native/approov-advanced-http": "file:../../ionic-native-approov-advanced-http-5.33.1.tgz",
+    "@ionic-native/approov-advanced-http": "^5.35.0",
     "@ionic-native/core": "^5.31.1",
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
