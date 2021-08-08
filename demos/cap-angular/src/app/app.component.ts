@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   readonly imageBaseUrl = 'assets/';
   readonly imageExtension = 'png';
   readonly host = 'https://shapes.approov.io';
-  readonly VERSION: string = 'v2'; // Change To v2 when using Approov
+  readonly VERSION: string = 'v1'; // Change To v2 when using Approov
   readonly HELLO_URL = `${this.host}/v1/hello`;
   readonly SHAPE_URL = `${this.host}/${this.VERSION}/shapes`;
   message = 'Tap Hello to Start...';

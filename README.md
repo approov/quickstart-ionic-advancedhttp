@@ -66,7 +66,7 @@ For Android:
 $ rm -f package-lock.json # Fix for invalid checksum in local packages.
 $ npm install
 $ ionic build
-$ ionic cap copy android
+$ ionic cap sync android
 ```
 
 After running the last command, open android directory in Android Studio. From there we can run / debug and generate a final APK for our project.
@@ -77,7 +77,7 @@ For iOS:
 $ rm -f package-lock.json # Fix for invalid checksum in local packages.
 $ npm install
 $ ionic build
-$ ionic cap copy ios
+$ ionic cap sync ios
 ```
 
 After Running the above commands there is one more step that we need to follow.
@@ -166,6 +166,13 @@ const VERSION = 'v2'; // Change To v2 when using Approov
 
 // demos/cap-react/src/App.tsx@L53
 VERSION = "v2"; // Change To v2 when using Approov
+```
+
+After the change you'll need to rebuild the application and copy the generated assets.
+
+```bash
+$ ionic build
+$ ionic cap copy <ios|android>
 ```
 
 There will be no need to make any extra change as the code will automatically initialize approov as soon as v2 is activated.
