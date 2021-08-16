@@ -60,6 +60,12 @@ Ensure that your system is set up for Ionic development setting up [Ionic CLI](h
 
 To build and run the Ionic Shapes App, open a shell terminal at the `demos/cap-*` directory and type the following commands.
 
+> Note: Before running `npm install` please force login using the Approov CLI by running:
+
+```bash
+$ approov sdk -list
+```
+
 For Android:
 
 ```bash
@@ -274,6 +280,16 @@ This quick start guide has shown you how to integrate Approov with your existing
 * Investigate other advanced features, such as [Offline Security Mode](https://approov.io/docs/latest/approov-usage-documentation/#offline-security-mode), [DeviceCheck Integration](https://approov.io/docs/latest/approov-usage-documentation/#apple-devicecheck-integration), [SafetyNet Integration](https://approov.io/docs/latest/approov-usage-documentation/#google-safetynet-integration) and [Android Automated Launch Detection](https://approov.io/docs/latest/approov-usage-documentation/#android-automated-launch-detection).
 
 ## TROUBLESHOOTING
+
+> Add Approov SDK error =>  Error: Command failed: approov sdk -getLibrary quickstart-ionic-advancedhttp/demos/cap-angular/node_modules/cordova-plugin-approov-advanced-http/approov-sdk/approov-sdk.aar
+
+You can face this issue if you have not executed the `approov sdk -list` command before the `npm install` command.
+Please execute this command before running the `npm install` command again.
+
+```bash
+$ rm -rf node_modules
+$ npm install
+```
 
 > Approov/Approov.framework/Approov does not contain bitcode
 
