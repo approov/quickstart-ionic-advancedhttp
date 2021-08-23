@@ -283,7 +283,7 @@ This quick start guide has shown you how to integrate Approov with your existing
 
 > Add Approov SDK error =>  Error: Command failed: approov sdk -getLibrary quickstart-ionic-advancedhttp/demos/cap-angular/node_modules/cordova-plugin-approov-advanced-http/approov-sdk/approov-sdk.aar
 
-You can face this issue if you have not executed the `approov sdk -list` command before the `npm install` command.
+You can face this issue if you have not executed the `approov api -list` command before the `npm install` command.
 Please execute this command before running the `npm install` command again.
 
 ```bash
