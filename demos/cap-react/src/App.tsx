@@ -77,7 +77,7 @@ export class App extends Component<any, AppState> {
         message: data.text,
         imageUrl: this.getImageUrl("hello"),
       });
-    } catch (err) {
+    } catch (err: any) {
       this.onAPIError(err);
     }
   }
@@ -95,7 +95,7 @@ export class App extends Component<any, AppState> {
           ? await this.http.getApproovLoggableToken(this.host)
           : undefined,
       });
-    } catch (err) {
+    } catch (err: any) {
       this.onAPIError(err);
       if (this.isApproov()) {
         this.setState({
