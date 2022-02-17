@@ -36,24 +36,6 @@ On a successful _hello_ request to `/v1/hello`, the client app will say hello wi
     <img src="readme-images/cordova-shapes-app-fail.png" width="256" title="Shapes App Fail">
 </a>
 
-A successful _shapes_ request to `/v1/shapes` returns one of four possible shapes:
-
-<a>
-    <img src="readme-images/cordova-shape-triangle.png" width="256" title="Triangle">
-</a>
-
-<a>
-    <img src="readme-images/cordova-shape-circle.png" width="256" title="Circle">
-</a>
-
-<a>
-    <img src="readme-images/cordova-shape-square.png" width="256" title="Square">
-</a>
-
-<a>
-    <img src="readme-images/cordova-shape-rectangle.png" width="256" title="Rectangle">
-</a>
-
 Ensure that your system is set up for Cordova development by following the [Cordova Get Started](https://cordova.apache.org/#getstarted) and [Cordova Develop for Platforms](https://cordova.apache.org/docs/en/latest/index.html#develop-for-platforms) instructions.
 
 To build and run the Cordova Shapes App, open a shell terminal at the `cordova-advanced-http/shapes-app` directory and type the following commands.
@@ -168,7 +150,7 @@ $ cordova plugin add ../plugins/cordova-plugin-approov-http
 
 ### Select the Correct Shapes Endpoint
 
-The Shapes server provides the app with shapes using multiple versions of an API: version 1 (https://shapes.approov.io/v1/shapes) which is _not_ protected by Approov, and version 2 (https://shapes.approov.io/v2/shapes) which _is_ protected by Approov.
+The Shapes server provides the app with shapes using multiple versions of an API. Version 2 (https://shapes.approov.io/v2/shapes) requires an Approov token to be presented in the request to be successful.
 
 Now that we’re using Approov, let’s switch to use version 2 of the Shapes API. Edit the Javascript source in cordova-advanced-http/shapes-app/www/js/index.js and change the Shapes server URLs to the v2 API path:
 
@@ -226,13 +208,25 @@ $ approov registration -add platforms/ios/build/device/Cordova\ Approov\ Shapes.
 
 ## RUN THE SHAPES APP WITH APPROOV
 
-Wait for the registration to propagate to the Approov service. This can take up to 30 seconds. Then restart the application on your device to flush out any bad tokens, tap _Shape_ and you should see:
+Wait for the registration to propagate to the Approov service. This can take up to 30 seconds. Then restart the application on your device to flush out any bad tokens, tap _Shape_ and you should see one of four possible shapes::
 
-<p>
-    <img src="readme-images/cordova-shape-triangle.png" width="256" title="Success">
-</p>
+<a>
+    <img src="readme-images/cordova-shape-triangle.png" width="256" title="Triangle">
+</a>
 
-or any of the four possible shapes returned by the server. Congratulations, your API is now Approoved!
+<a>
+    <img src="readme-images/cordova-shape-circle.png" width="256" title="Circle">
+</a>
+
+<a>
+    <img src="readme-images/cordova-shape-square.png" width="256" title="Square">
+</a>
+
+<a>
+    <img src="readme-images/cordova-shape-rectangle.png" width="256" title="Rectangle">
+</a>
+
+Congratulations, your API is now Approoved!
 
 ## WHAT IF I DON'T GET SHAPES
 
