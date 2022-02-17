@@ -38,24 +38,6 @@ On a successful _hello_ request to `/v1/hello`, the client app will say hello wi
     <img src="readme-images/fail.png" width="256" title="Shapes App Fail">
 </a>
 
-A successful _shapes_ request to `/v1/shapes` returns one of four possible shapes:
-
-<a>
-    <img src="readme-images/triangle.png" width="256" title="Triangle">
-</a>
-
-<a>
-    <img src="readme-images/circle.png" width="256" title="Circle">
-</a>
-
-<a>
-    <img src="readme-images/square.png" width="256" title="Square">
-</a>
-
-<a>
-    <img src="readme-images/rectangle.png" width="256" title="Rectangle">
-</a>
-
 Ensure that your system is set up for Ionic development setting up [Ionic CLI](https://ionicframework.com/docs/intro/cli).
 
 To build and run the Ionic Shapes App, open a shell terminal at the `demos/cap-*` directory and type the following commands.
@@ -157,7 +139,7 @@ ApproovHttp.initializeApproov();
 
 ### Select the Correct Shapes Endpoint
 
-The Shapes server provides the app with shapes using multiple versions of an API: version 1 (https://shapes.approov.io/v1/shapes) which is _not_ protected by Approov, and version 2 (https://shapes.approov.io/v2/shapes) which _is_ protected by Approov.
+The Shapes server provides the app with shapes using multiple versions of an API. Version 2 (https://shapes.approov.io/v2/shapes) requires a valid Approov token to be provided as part of the request.
 
 Now that we’re using Approov, let’s switch to use version 2 of the Shapes API.
 
@@ -225,13 +207,25 @@ $ approov registration -add path/to/app.ipa
 
 ## RUN THE SHAPES APP WITH APPROOV
 
-Wait for the registration to propagate to the Approov service. This can take up to 30 seconds. Then restart the application on your device to flush out any bad tokens, tap _Shape_ and you should see:
+Wait for the registration to propagate to the Approov service. This can take up to 30 seconds. Then restart the application on your device to flush out any bad tokens, tap _Shape_ and you should see one of four possible shapes:
 
-<p>
-    <img src="readme-images/approved-shape.png" width="256" title="Success">
-</p>
+<a>
+    <img src="readme-images/triangle.png" width="256" title="Triangle">
+</a>
 
-or any of the four possible shapes returned by the server. Congratulations, your API is now Approoved! ;)
+<a>
+    <img src="readme-images/circle.png" width="256" title="Circle">
+</a>
+
+<a>
+    <img src="readme-images/square.png" width="256" title="Square">
+</a>
+
+<a>
+    <img src="readme-images/rectangle.png" width="256" title="Rectangle">
+</a>
+
+Congratulations, your API is now Approoved! ;)
 
 ## WHAT IF I DON'T GET SHAPES
 
