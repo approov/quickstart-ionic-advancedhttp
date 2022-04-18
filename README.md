@@ -3,13 +3,15 @@
 This quickstart is written specifically for Android and iOS apps that are implemented using the [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http). If this is not your situation then check if there is a more relevant Quickstart guide available.
 
 ## WHAT YOU WILL NEED
-* Access to a trial or paid Approov account
-* The `approov` [command line tool](https://approov.io/docs/latest/approov-installation/) installed with access to your account
-* The contents of the folder containing this README
+* Access to a trial or paid Approov account.
+* The `approov` [command line tool](https://approov.io/docs/latest/approov-installation/) installed with access to your account.
+* The contents of the folder containing this README.
 * An iOS device if you are using the iOS platform. You may use an iOS simulator but the Approov SDK requires an actual iOS device in order to authenticate an application.
-* XCode if targeting iOS development in order to edit codesigning options. Version 12.3 is used in this document.
-* [Cocoapods](https://cocoapods.org) installed (you must use version 1.9+ which offers support for xcframeworks)
+* [Android Studio](https://developer.android.com/studio) installed (version Bumblebee 2021.1 is used in this guide) if you will build the Android app.
+* [Xcode](https://developer.apple.com/xcode/) installed (version 13.3 is used in this guide) to build iOS version of application.
+* [Cocoapods](https://cocoapods.org) installed (you must use version 1.9+ which offers support for xcframeworks).
 * [NodeJS](https://nodejs.org/en/) v14+ installed in the system.
+* [Ionic CLI](https://ionicframework.com/docs/intro/cli) installed in the system (note you may need to use `sudo` when using npm to install the Ionic CLI globally).
 
 ## WHAT YOU WILL LEARN
 * How to integrate Approov into a real app in a step by step fashion
@@ -26,6 +28,48 @@ The Shapes App is a simple Ionic application written in Typescript, HTML and CSS
 
 The application consists mostly of boilerplate code, apart from the definitions of the shapes server’s URLs and setting up of the onclick callback for each of the buttons along the bottom of the screen.
 
+To build and run the Ionic Shapes App, open a shell terminal at the `demos/cap-*` directory and type the following commands.
+
+> Note: Before running `npm install` please force login using the Approov CLI by running:
+
+```bash
+approov sdk -list
+```
+
+Now install dependencies and build the variant of the app with (the `package-lock.json` removal is to clear invalid checksums in local packages from a previous run):
+
+```bash
+rm -f package-lock.json
+npm install
+ionic build
+```
+
+### ANDROID SPECIFIC INSTRUCTIONS
+
+Build the Android app and open the Android Studo project by executing the command below:
+
+```bash
+ionic cap sync android
+ionic cap open android
+```
+
+From there we can run / debug and generate a final APK for our project.
+
+### IOS SPECIFIC INSTRUCTIONS
+
+Build the iOS app and open the Xcode project by executing the command below:
+
+```bash
+ionic cap sync ios
+ionic cap open ios
+```
+
+Select your code signing team in the `Signing & Capabilities` section of the project. Also ensure you modify the app's `Bundle Identifier` so it contains a unique string (you can simply append your company name). This is to avoid Apple rejecting a duplicate `Bundle Identifier` when code signing is performed. Also turn off the bitcode for the application off, Since, approov-ios-sdk does not ship with bitcode enabled.
+
+Now you can run your application as any normal iOS App.
+
+### RUNNING THE INITIAL SHAPES APP
+
 The _Hello_ and _Shape_ buttons set up API requests to the shapes server, using the application’s http client. For example, the _Hello_ button initiates a `GET` request to the `shapes.approov.io/v1/hello` endpoint.
 
 On a successful _hello_ request to `/v1/hello`, the client app will say hello with a smile, while a failure or unsuccessful response will return a frown with some explanation of the error. The purpose of this simple endpoint is really just to test connectivity and to verify that you have built, installed and run the demo app correctly.
@@ -38,44 +82,30 @@ On a successful _hello_ request to `/v1/hello`, the client app will say hello wi
     <img src="readme-images/fail.png" width="256" title="Shapes App Fail">
 </a>
 
-Ensure that your system is set up for Ionic development setting up [Ionic CLI](https://ionicframework.com/docs/intro/cli).
+## ADDING APPROOV SUPPORT
 
-To build and run the Ionic Shapes App, open a shell terminal at the `demos/cap-*` directory and type the following commands.
+Since this plugin is already fetches the Approov SDK during installation there is no need for any further setup.
 
-> Note: Before running `npm install` please force login using the Approov CLI by running:
+To initialize the Approov Protection we can add this snippet anywhere in our application:
 
-```bash
-$ approov sdk -list
+```ts
+import { ApproovHttp } from '@ionic-native/approov-advanced-http';
+
+// ...
+
+ApproovHttp.initializeApproov();
 ```
 
-For Android:
+### Adding iOS Podfile Dependency
+
+For iOS it is necessary to do a manual edit on the `Podfile` to add the Approov SDK dependency:
 
 ```bash
-$ rm -f package-lock.json # Fix for invalid checksum in local packages.
-$ npm install
-$ ionic build
-$ ionic cap sync android
+cd ios/App
+rm -f PodFile.lock
 ```
 
-After running the last command, open android directory in Android Studio. From there we can run / debug and generate a final APK for our project.
-
-For iOS:
-
-```bash
-$ rm -f package-lock.json # Fix for invalid checksum in local packages.
-$ npm install
-$ ionic build
-$ ionic cap sync ios
-```
-
-After Running the above commands there is one more step that we need to follow.
-
-```bash
-$ cd ios/App
-$ rm -f PodFile.lock
-```
-
-Update the PodFile and add `source 'https://github.com/approov/approov-ios-sdk.git'` at the top.
+Update the `PodFile` and add `source 'https://github.com/approov/approov-ios-sdk.git'` at the top.
 
 ```PodFile
 source 'https://github.com/approov/approov-ios-sdk.git'
@@ -106,36 +136,10 @@ end
 Your source file should look similar to this. After editing this file executes the following command:
 
 ```bash
-$ pod install --repo-update
+pod install --repo-update
 ```
 
 Unfortunately, capacitor does not add [custom podspec sources](https://github.com/ionic-team/capacitor/issues/2774) automatically we have to do this process manually.
-
-Running an iOS app requires codesigning. Open the Xcode project by executing the command below:
-
-```bash
-$ ionic cap open ios
-```
-
-Select your code signing team in the `Signing & Capabilities` section of the project. Also ensure you modify the app's `Bundle Identifier` so it contains a unique string (you can simply append your company name). This is to avoid Apple rejecting a duplicate `Bundle Identifier` when code signing is performed.
-Also turn off the bitcode for the application off, Since, approov-ios-sdk does not ship with bitcode enabled.
-Now you can run your application as any normal iOS App.
-
-You should now be able to use the app to say hello and get shapes.
-
-## ADDING APPROOV SUPPORT
-
-Since this plugin is already fetches the Approov SDK during installation there is no need for any further setup.
-
-To initialize the Approov Protection we can add this snippet anywhere in our application:
-
-```ts
-import { ApproovHttp } from '@ionic-native/approov-advanced-http';
-
-// ...
-
-ApproovHttp.initializeApproov();
-```
 
 ### Select the Correct Shapes Endpoint
 
@@ -159,8 +163,8 @@ VERSION = "v2"; // Change To v2 when using Approov
 After the change you'll need to rebuild the application and copy the generated assets.
 
 ```bash
-$ ionic build
-$ ionic cap copy <ios|android>
+ionic build
+ionic cap copy <ios|android>
 ```
 
 There will be no need to make any extra change as the code will automatically initialize approov as soon as v2 is activated.
@@ -170,7 +174,7 @@ There will be no need to make any extra change as the code will automatically in
 In order for Approov tokens to be generated for `https://shapes.approov.io/v2/shapes` it is necessary to inform Approov about it. If you are using a demo account this is unnecessary as it is already set up. For a trial account do:
 
 ```
-$ approov api -add shapes.approov.io
+approov api -add shapes.approov.io
 ```
 
 Tokens for this domain will be automatically signed with the specific secret for this domain, rather than the normal one for your account. After a short delay of no more than 30 seconds the new API settings become active.
@@ -196,13 +200,13 @@ Approov command line tools are provided for Windows, MacOS, and Linux platforms.
 For Android:
 
 ```
-$ approov registration -add android/app/build/outputs/apk/debug/app-debug.apk
+approov registration -add android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
 For iOS:
 
 ```
-$ approov registration -add path/to/app.ipa
+approov registration -add path/to/app.ipa
 ```
 
 ## RUN THE SHAPES APP WITH APPROOV
@@ -281,8 +285,8 @@ You can face this issue if you have not executed the `approov api -list` command
 Please execute this command before running the `npm install` command again.
 
 ```bash
-$ rm -rf node_modules
-$ npm install
+rm -rf node_modules
+npm install
 ```
 
 > Approov/Approov.framework/Approov does not contain bitcode
