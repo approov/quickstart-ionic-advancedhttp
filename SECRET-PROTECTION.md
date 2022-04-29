@@ -131,7 +131,7 @@ cordova.plugin.http.approovPrecheck(key, newDef,
     (secret) => {
         // success function - use `secret` as required, but never cache or store its value - note `secret` will be null if the provided key is not defined
     },
-    (err) -> {
+    (err) => {
         if (err.type == "rejection")
             // failure due to the attestation being rejected, err.rejectionARC and err.rejectionReasons may be used to present information to the user
             // (note err.rejectionReasons is only available if the feature is enabled, otherwise it is always an empty string)
@@ -140,7 +140,6 @@ cordova.plugin.http.approovPrecheck(key, newDef,
         else
             // a more permanent error, see err.message
     });
-}
 ```
 
 to lookup a secure string with the given `key`. This will return `null` if it is not defined. Note that you should never cache this value in your code. Approov does the caching for you in a secure way.
@@ -159,7 +158,7 @@ cordova.plugin.http.approovPrefetch(
     () => {
         // success function
     },
-    (err) -> {
+    (err) => {
         // failure function
     });
 ```
@@ -174,7 +173,7 @@ cordova.plugin.http.approovPrecheck(
     () => {
         // success function - the precheck completed okay
     },
-    (err) -> {
+    (err) => {
         if (err.type == "rejection")
             // failure due to the attestation being rejected, err.rejectionARC and err.rejectionReasons may be used to present information to the user
             // (note err.rejectionReasons is only available if the feature is enabled, otherwise it is always an empty string)

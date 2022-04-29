@@ -48,7 +48,7 @@ The quickstart also provides the following additional methods:
 The default header name of `Approov-Token` can be changed as follows:
 
 ```Javascript
-cordova.plugin.http.approovSetTokenHeader("Authorization", "Bearer ")
+cordova.plugin.http.approovSetTokenHeader("Authorization", "Bearer ");
 ```
 
 The first parameter is the new header name and the second a prefix to be added to the Approov token. This is primarily for integrations where the Approov Token JWT might need to be prefixed with `Bearer` and passed in the `Authorization` header.
@@ -57,7 +57,7 @@ The first parameter is the new header name and the second a prefix to be added t
 If want to use [Token Binding](https://approov.io/docs/latest/approov-usage-documentation/#token-binding) then set the header holding the value to be used for binding as follows:
 
 ```Javascript
-cordova.plugin.http.approovSetBindingHeader("Authorization")
+cordova.plugin.http.approovSetBindingHeader("Authorization");
 ```
 
 In this case it means that the value of `Authorization` holds the token value to be bound. This only needs to be called once. On subsequent requests the value of the specified header is read and its value set as the token binding value. Note that you should select a header whose value does not typically change from request to request, as each change requires a new Approov token to be fetched.
@@ -70,7 +70,7 @@ cordova.plugin.http.approovPrefetch(
     () => {
         // success function
     },
-    (err) -> {
+    (err) => {
         // failure function
     });
 ```
@@ -93,7 +93,7 @@ cordova.plugin.http.approovPrecheck(
     () => {
         // success function - the precheck completed okay
     },
-    (err) -> {
+    (err) => {
         if (err.type == "rejection")
             // failure due to the attestation being rejected, err.rejectionARC and err.rejectionReasons may be used to present information to the user
             // (note err.rejectionReasons is only available if the feature is enabled, otherwise it is always an empty string)
