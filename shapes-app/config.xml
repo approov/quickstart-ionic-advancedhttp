@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.approov.demo.shapes.http.cordova" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Cordova Approov Shapes</name>
+<widget id="io.approov.demo.shapes.http.cordova" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>CordovaApproovShapes</name>
     <description>
-        A simple shapes app to demonstrate the Approov HTTP Cordova-plugin
+        A simple shapes app to demonstrate the Approov Advanced HTTP Cordova-plugin
     </description>
     <author email="support@approov.io" href="https://approov.io/">
         Approov Team
@@ -32,5 +32,4 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="ios" spec="^5.0.0" />
 </widget>

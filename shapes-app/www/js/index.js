@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020 CriticalBlue Ltd.
+ * Copyright (c) 2018-2022 CriticalBlue Ltd.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
  * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
@@ -15,51 +15,54 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// Shapes server URLs
 var HELLO_URL = "https://shapes.approov.io/v1/hello";
+
+// COMMENT THE LINE BELOW IF USING APPROOV WITH TOKEN PROTECTION
 var SHAPE_URL = "https://shapes.approov.io/v1/shapes";
 
+// UNCOMMENT THE LINE BELOW IF USING APPROOV WITH TOKEN PROTECTION
+//var SHAPE_URL = "https://shapes.approov.io/v3/shapes";
+
+// COMMENT THE LINE BELOW IF USING APPROOV WITH SECRET PROTECTION
+var API_KEY = "yXClypapWNHIifHUWmBIyPFAm";
+
+// UNCOMMENT THE LINE BELOW IF USING APPROOV WITH SECRET PROTECTION
+//var API_KEY = "shapes_api_key_placeholder";
+
 // Tag for logging
-var TAG = "APPROOV SHAPES CORDOVA";
+var TAG = "CordovaApproovShapes";
 
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        if ("deviceready" == id) {
-            // Activate request functions
-            document.getElementById("helloButton").onclick = requestHello;
-            document.getElementById("shapeButton").onclick = requestShape;
-            console.log(TAG + ": Ready");
-        }
-    }
-};
+// Main initialization for the app
+function initialize() {
+    document.addEventListener('deviceready', onDeviceReady, false);
+}
 
-// Request hello
+// Setup when the Cordova environment is fully loaded
+function onDeviceReady() {
+    // UNCOMMENT THE LINES BELOW TO ADD APPROOV
+    /*cordova.plugin.http.approovInitialize("<enter-your-config-string-here>",
+        () => {},
+        (err) => {
+            console.log(TAG + ": Approov initialization error: " + err.message);
+        });*/
+
+    // UNCOMMENT IF USING APPROOV WITH SECRET PROTECTION
+    //cordova.plugin.http.approovAddSubstitutionHeader("Api-Key", "");
+
+    document.getElementById("helloButton").onclick = requestHello;
+    document.getElementById("shapeButton").onclick = requestShape;
+    console.log(TAG + ": Ready");
+}
+
+// Check connectivity
 function requestHello() {
     console.log(TAG + ": Hello button pressed. Attempting to get a hello response from the Approov shapes server...");
     updateDisplay("Checking connectivity...", "approov.png");
+
     // cordova.plugin.http.get(url, params, headers, success, failure)
     cordova.plugin.http.get(HELLO_URL, {}, {},
-        function(response) {
-            // If success, response data contains hello world string
+        (response) => {
+            // if success, response data contains hello world string
             if (response.status == 200) {
                 try {
                     var hello = JSON.parse(response.data).text;
@@ -72,23 +75,24 @@ function requestHello() {
                 }
             }
         },
-        function(response) {
+        (response) => {
             if (response.status != 200) {
-                // If failure, response error contains cause
+                // if failure, response error contains cause
                 console.log(TAG + ": Error on hello request: " + response.status);
                 updateDisplay("" + response.status + ": " + response.error, "confused.png");
             }
         });
 }
 
-// Request shape (Approov-protected)
+// Request shape
 function requestShape() {
     console.log(TAG + ": Shape button pressed. Attempting to get a shape response from the Approov shapes server...");
     updateDisplay("Checking app authenticity...", "approov.png");
+
     // cordova.plugin.http.get(url, params, headers, success, failure)
-    cordova.plugin.http.get(SHAPE_URL, {}, {},
-        function(response) {
-            // If success, response data contains shape name
+    cordova.plugin.http.get(SHAPE_URL, {}, {"Api-Key": API_KEY},
+        (response) => {
+            // if success, response data contains shape name
             if (response.status == 200) {
                 try {
                     var shape = JSON.parse(response.data).shape.toLowerCase();
@@ -101,9 +105,9 @@ function requestShape() {
                 }
             }
         },
-        function(response) {
+        (response) => {
             if (response.status != 200) {
-                // If failure, response error contains cause
+                // if failure, response error contains cause
                 console.log(TAG + ": Error on shape request: " + response.status);
                 updateDisplay("" + response.status + ": " + response.error, "confused.png");
             }
@@ -124,7 +128,7 @@ function updateDisplay(text, image) {
         } else {
             var newImage = new Image;
 
-            // Replace display image when ready
+            // replace display image when ready
             newImage.onload = function () {
                 display.src = this.src;
             }
