@@ -29,7 +29,7 @@ For iOS:
 
 ```
 cordova build ios
-approov registration -add platforms/ios/build/device/CordovaApproovShapes.ipa -bitcode
+approov registration -add platforms/ios/build/device/<YourApp>.ipa -bitcode
 ```
 
 Note, the `-bitcode` option must be used because the Cordova plugin uses the bitcode variant of the Approov SDK. If you are building and running on an iOS simulator then there will be no `.ipa` file and you must ensure the app [always passes](https://approov.io/docs/latest/approov-usage-documentation/#adding-a-device-security-policy) on your simulator without needing to perform a registration.
