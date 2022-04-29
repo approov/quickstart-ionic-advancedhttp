@@ -72,7 +72,7 @@ cordova.plugin.http.approovPrefetch(
     },
     (err) -> {
         // failure function
-    }
+    });
 ```
 
 This initiates the process of fetching an Approov token in the background, so that a cached token is available immediately when subsequently needed, or at least the fetch time is reduced. When the prefetch is finished then either the provided success or failure function will be called, depending upon the result. Note that there is no point in performing a prefetch if you are using token binding.
@@ -101,7 +101,7 @@ cordova.plugin.http.approovPrecheck(
             // failure due to a potentially temporary networking issue, allow for a user initiated retry
         else
             // a more permanent error, see err.message
-    }
+    });
 ```
 
 This performs the operation in the backgrouund, and then either the provided success or failure function will be called.

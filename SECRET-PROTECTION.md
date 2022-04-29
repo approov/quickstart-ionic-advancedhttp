@@ -139,7 +139,7 @@ cordova.plugin.http.approovPrecheck(key, newDef,
             // failure due to a potentially temporary networking issue, allow for a user initiated retry
         else
             // a more permanent error, see err.message
-    }
+    });
 }
 ```
 
@@ -161,7 +161,7 @@ cordova.plugin.http.approovPrefetch(
     },
     (err) -> {
         // failure function
-    }
+    });
 ```
 
 This initiates the process of fetching the required information as a background task, so that it is available immediately when subsequently needed. The success or failure function is called when the prefetch is completed. Note the information will automatically expire after approximately 5 minutes.
@@ -182,7 +182,7 @@ cordova.plugin.http.approovPrecheck(
             // failure due to a potentially temporary networking issue, allow for a user initiated retry
         else
             // a more permanent error, see err.message
-    }
+    });
 ```
 
 > Note you should NEVER use this as the only form of protection in your app, this is simply to provide an early indication of failure to your users as a convenience. You must always also have secrets essential to the operation of your app, or access to backend API services, protected with Approov. This is because, although the Approov attestation itself is heavily secured, it may be possible for an attacker to bypass its result or prevent it being called at all. When the app is dependent on the secrets protected, it is not possible for them to be obtained at all without passing the attestation.
