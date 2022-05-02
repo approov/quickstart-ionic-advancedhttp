@@ -128,10 +128,10 @@ cordova.plugin.http.approovFetchToken(success, failure);
 If the token fetch completes successfully then the `success` function is called with a parameter providing the token. If there is an error then the `failure` functon is called with an error parameter.
 
 ## GetMessageSignature
-Gets the [message signature](https://approov.io/docs/latest/approov-usage-documentation/#message-signing) for the given message. This uses an account specific message signing key that is transmitted to the SDK after a successful fetch if the facility is enabled for the account. Note that if the attestation failed then the signing key provided is actually random so that the signature will be incorrect. An Approov token should always be included in the message being signed and sent alongside this signature to prevent replay attacks.
+Gets the [message signature](https://approov.io/docs/latest/approov-usage-documentation/#message-signing) for the given `message`. This uses an account specific message signing key that is transmitted to the SDK after a successful fetch if the facility is enabled for the account. Note that if the attestation failed then the signing key provided is actually random so that the signature will be incorrect. An Approov token should always be included in the message being signed and sent alongside this signature to prevent replay attacks.
 
 ```Javascript
-cordova.plugin.http.approovGetMessageSignature(success, failure);
+cordova.plugin.http.approovGetMessageSignature(message, success, failure);
 ```
 
 If the message signing completes successfully then the `success` function is called with a parameter providing the base64 encoded signature. If there is an error then the `failure` functon is called with an error parameter.
