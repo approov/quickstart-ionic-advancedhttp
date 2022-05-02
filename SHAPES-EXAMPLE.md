@@ -18,7 +18,15 @@ This quickstart is written specifically for Android and iOS apps that are implem
 
 The app is initially setup to run the standard [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http).
 
-To build and run the Cordova Shapes App, open a shell terminal at the `cordova-advanced-http/shapes-app` directory and type the following command for Android:
+Firstly, we need to add the platforms and the standard plugin. Open a shell terminal at the `cordova-advanced-http/shapes-app` directory and type the following:
+
+```
+cordova platform add android
+cordova platform add ios
+cordova plugin add cordova-plugin-advanced-http
+```
+
+Now we need to build and run the Cordova Shapes App. Type the following command for Android:
 
 ```
 cordova run android
@@ -26,7 +34,7 @@ cordova run android
 
 This builds the app for Android and runs it on a connected device.
 
-Running an iOS app requires codesigning. Open the Xcode project located in `cordova-advanced-http/shapes-app/platforms/ios/CordovaApproovShapes.xcworkspace`:
+Running an iOS app requires code signing. Open the Xcode project located in `cordova-advanced-http/shapes-app/platforms/ios/CordovaApproovShapes.xcworkspace`:
 
 ```
 open platforms/ios/CordovaApproovShapes.xcworkspace
