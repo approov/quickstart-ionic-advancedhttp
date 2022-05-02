@@ -137,7 +137,19 @@ Note, the `-bitcode` option must be used because the Cordova plugin uses the bit
 
 ## SHAPES APP WITH APPROOV TOKEN PROTECTION
 
-Run the app again without making any changes to the app and press the `Get Shape` button. You should now see this (or another shape):
+Do not make any further code changes and run the app again as follows, for Android:
+
+```
+cordova run android
+```
+
+For iOS:
+
+```
+cordova run ios
+```
+
+Press the `Get Shape` button. You should now see this (or another shape):
 
 <a>
     <img src="readme-images/cordova-shape-rectangle.png" width="256" title="Rectangle">
@@ -191,6 +203,7 @@ Build, run and registerr the app again as follows. For Android:
 ```
 cordova build android
 approov registration -add platforms/android/app/build/outputs/apk/debug/app-debug.apk
+cordova run android
 ```
 
 Note, on Windows you need to substitute \ for / in the above commands.
@@ -200,6 +213,7 @@ For iOS:
 ```
 cordova build ios
 approov registration -add platforms/ios/build/device/CordovaApproovShapes.ipa -bitcode
+cordova run ios
 ```
 
 Run the app again without making any changes to the app and press the `Get Shape` button. You should now see this (or another shape):
