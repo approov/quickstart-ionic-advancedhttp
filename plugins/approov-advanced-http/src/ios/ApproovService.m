@@ -195,10 +195,11 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
 }
 
 /**
- * Sets a flag indicating if that the network interceptor should proceed anyway if it is
- * not possible to obtain an Approov token due to a networking failure. If this is called then
- * then the backend API can receive calls without the expected Approov token header
- * being added, or without header/query parameter substitutions being made.
+ * Indicates that requests should proceed anyway if it is not possible to obtain an Approov token
+ * due to a networking failure. If this is called then the backend API can receive calls without the
+ * expected Approov token header being added, or without header/query parameter substitutions being
+ * made. Note that this should be used with caution because it may allow a connection to be established
+ * before any dynamic pins have been received via Approov. thus potentially opening the channel to a MitM.
  */
 - (void)setProceedOnNetworkFail {
     // no need to synchronize on this
@@ -316,6 +317,8 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
  * Approov pins but without a path to update the pins until a URL is used that is not excluded. Thus
  * you are responsible for ensuring that there is always a possibility of calling a non-excluded
  * URL, or you should make an explicit call to fetchToken if there are persistent pinning failures.
+ * Conversely, use of those option may allow a connection to be established before any dynamic pins
+ * have been received via Approov. thus potentially opening the channel to a MitM.
  *
  * @param urlRegex is the regular expression that will be compared against URLs to exlude them
  */
@@ -594,19 +597,6 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
     if (approovResult.isConfigChanged) {
         [Approov fetchConfig];
         NSLog(@"%@: dynamic configuration update received", TAG);
-    }
-
-    // if force apply pins is asserted then we don't allow any further progress. This can happen if a connection
-    // is initially opened as being excluded or proceeding on network fail but no dynamic updates and therefore pins
-    // have been received by the SDK. Subsequent requests with Approov protection cannot proceed in case it
-    // is using the same unprotected TLS connection. If this exception does occur then it is actually possible
-    // for it to persist until the app is restarted, since it is not possible to determine when the TLS connection
-    // has been dropped and this does not allow progression to allow the reconnection.
-    if (approovResult.isForceApplyPins) {
-        NSLog(@"%@: force apply pins", TAG);
-        @throw [NSException exceptionWithName:@"ApproovError" reason:@"Approov error"
-                    userInfo:@{NSLocalizedDescriptionKey: [NSString stringWithFormat:
-                    @"Approov force apply pins as out of date (or no) pins have been applied"]}];
     }
 
     // process the token fetch result

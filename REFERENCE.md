@@ -24,6 +24,8 @@ Indicates that the network interceptor should proceed anyway if it is not possib
 cordova.plugin.http.approovSetProceedOnNetworkFail();
 ```
 
+Note that this should be used with *CAUTION* because it may allow a connection to be established before any dynamic pins have been received via Approov. thus potentially opening the channel to a MitM.
+
 ## SetTokenHeader
 Sets the header that the Approov token is added on, as well as an optional prefix String (such as "`Bearer `"). By default the token is provided on `Approov-Token` with no prefix.
 
@@ -73,7 +75,7 @@ Adds an exclusion URL [regular expression](https://regex101.com/) via the `urlRe
 cordova.plugin.http.approovAddExclusionURLRegex(urlRegex);
 ```
 
-Note that this facility must be used with *EXTREME CAUTION* due to the impact of dynamic pinning. Pinning may be applied to all domains added using Approov, and updates to the pins are received when an Approov fetch is performed. If you exclude some URLs on domains that are protected with Approov, then these will be protected with Approov pins but without a path to update the pins until a URL is used that is not excluded. Thus you are responsible for ensuring that there is always a possibility of calling a non-excluded URL, or you should make an explicit call to fetchToken if there are persistent pinning failures.
+Note that this facility must be used with *EXTREME CAUTION* due to the impact of dynamic pinning. Pinning may be applied to all domains added using Approov, and updates to the pins are received when an Approov fetch is performed. If you exclude some URLs on domains that are protected with Approov, then these will be protected with Approov pins but without a path to update the pins until a URL is used that is not excluded. Thus you are responsible for ensuring that there is always a possibility of calling a non-excluded URL, or you should make an explicit call to fetchToken if there are persistent pinning failures. Conversely, use of those option may allow a connection to be established before any dynamic pins have been received via Approov. thus potentially opening the channel to a MitM.
 
 ## RemoveExclusionURLRegex
 Removes an exclusion URL regular expression (`urlRegex`) previously added using `AddExclusionURLRegex`.
