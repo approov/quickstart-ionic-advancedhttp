@@ -39,7 +39,7 @@ cordova.plugin.http.approovSetBindingHeader(header);
 ```
 
 ## AddSubstitutionHeader
-Adds the name of a `header` which should be subject to secure strings substitution. This means that if the `header` is present then the value will be used as a key to look up a secure string value which will be substituted into the `header` value instead. This allows easy migration to the use of secure strings. A `requiredPrefix` may be specified to deal with cases such as the use of "`Bearer `" prefixed before values in an authorization header. If this is not required then simply use an empty string.
+Adds the name of a `header` which should be subject to [secure strings](https://approov.io/docs/latest/approov-usage-documentation/#secure-strings) substitution. This means that if the `header` is present then the value will be used as a key to look up a secure string value which will be substituted into the `header` value instead. This allows easy migration to the use of secure strings. A `requiredPrefix` may be specified to deal with cases such as the use of "`Bearer `" prefixed before values in an authorization header. If this is not required then simply use an empty string.
 
 ```Javascript
 cordova.plugin.http.approovAddSubstitutionHeader(header, requiredPrefix);
@@ -53,7 +53,7 @@ cordova.plugin.http.approovRemoveSubstitutionHeader(header);
 ```
 
 ## AddSubstitutionQueryParam
-Adds a `key` name for a query parameter that should be subject to secure strings substitution. This means that if the query parameter is present in a URL then the value will be used as a key to look up a secure string value which will be substituted as the query parameter value instead. This allows easy migration to the use of secure strings.
+Adds a `key` name for a query parameter that should be subject to [secure strings](https://approov.io/docs/latest/approov-usage-documentation/#secure-strings) substitution. This means that if the query parameter is present in a URL then the value will be used as a key to look up a secure string value which will be substituted as the query parameter value instead. This allows easy migration to the use of secure strings.
 
 ```Javascript
 cordova.plugin.http.approovAddSubstitutionQueryParam(key);
@@ -92,7 +92,7 @@ cordova.plugin.http.approovPrefetch(success, failure);
 If the prefetch completes successfully then the `success` function is called. If there is an error then the `failure` functon is called with an error parameter.
 
 ## Precheck
-Performs a precheck to determine if the app will pass attestation. This requires secure strings to be enabled for the account, although no strings need to be set up. This will likely require network access so may take some time to complete.
+Performs a precheck to determine if the app will pass attestation. This requires [secure strings](https://approov.io/docs/latest/approov-usage-documentation/#secure-strings) to be enabled for the account, although no strings need to be set up. This will likely require network access so may take some time to complete.
 
 ```Javascript
 cordova.plugin.http.approovPrecheck(success, failure);

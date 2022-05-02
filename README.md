@@ -66,4 +66,4 @@ To actually protect your APIs there are some further steps. Approov provides two
 
 Note that it is possible to use both approaches side-by-side in the same app, in case your app uses a mixture of 1st and 3rd party APIs.
 
-See [REFERENCE](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/RFEERENCE.md) for a complete list of all of the Approov related methods supported by the plugin.
+See [REFERENCE](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/REFERENCE.md) for a complete list of all of the Approov related methods supported by the plugin.
