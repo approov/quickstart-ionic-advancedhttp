@@ -165,11 +165,10 @@ public class ApproovService {
   }
 
   /**
-   * Sets a binding header that must be present on all requests using the ApproovService. A
-   * header should be chosen whose value is unchanging for most requests (such as an
-   * Authorization header). A hash of the header value is included in the issued Approov tokens
-   * to bind them to the value. This may then be verified by the backend API integration. This
-   * method should typically only be called once.
+   * Sets a binding header that may be present on requests being made. A header should be
+   * chosen whose value is unchanging for most requests (such as an Authorization header).
+   * If the header is present, then a hash of the header value is included in the issued Approov
+   * tokens to bind them to the value. This may then be verified by the backend API integration.
    *
    * @param header is the header to use for Approov token binding
    */
@@ -258,7 +257,13 @@ public class ApproovService {
 
   /**
    * Adds an exclusion URL regular expression. If a URL for a request matches this regular expression
-   * then it will not be subject to any Approov protection.
+   * then it will not be subject to any Approov protection. Note that this facility must be used with
+   * EXTREME CAUTION due to the impact of dynamic pinning. Pinning may be applied to all domains added
+   * using Approov, and updates to the pins are received when an Approov fetch is performed. If you
+   * exclude some URLs on domains that are protected with Approov, then these will be protected with
+   * Approov pins but without a path to update the pins until a URL is used that is not excluded. Thus
+   * you are responsible for ensuring that there is always a possibility of calling a non-excluded
+   * URL, or you should make an explicit call to fetchToken if there are persistent pinning failures.
    *
    * @param urlRegex is the regular expression that will be compared against URLs to exlude them
    */
@@ -675,6 +680,11 @@ public class ApproovService {
     if (!isInitialized)
       return;
 
+
+    // ensure the connection is pinned even for excluded URLs since we need to ensure that if the same
+    // connection is used for protected requests then it will have been properly pinned
+    setupApproovCertPinning(request);
+
     // check if the URL matches one of the exclusion regexs and just return if so
     URL url = request.url();
     String urlString = url.toString();
@@ -701,6 +711,17 @@ public class ApproovService {
     if (approovResults.isConfigChanged()) {
       Approov.fetchConfig();
       Log.d(TAG, "dynamic configuration update received");
+    }
+
+    // if force apply pins is asserted then we don't allow any further progress. This can happen if a connection
+    // is initially opened as being excluded or proceeding on network fail but no dynamic updates and therefore pins
+    // have been received by the SDK. Subsequent requests with Approov protection cannot proceed in case it
+    // is using the same unprotected TLS connection. If this exception does occur then it is actually possible
+    // for it to persist until the app is restarted, since it is not possible to determine when the TLS connection
+    // has been dropped and this does not allow progression to allow the reconnection.
+    if (approovResults.isForceApplyPins()) {
+      Log.d(TAG, "force apply pins");
+      throw new IOException("Approov force apply pins as out of date (or no) pins have been applied");
     }
 
     // check the status of Approov token fetch
@@ -760,10 +781,6 @@ public class ApproovService {
                         approovResults.getStatus().toString());
         }
       }
-
-      // ensure the connection is pinned - note we only do this if we had a successful response from Approov
-      // since otherwise there will be no way to update pins
-      setupApproovCertPinning(request);
     }
   }
 }

@@ -65,3 +65,5 @@ To actually protect your APIs there are some further steps. Approov provides two
 * [SECRET PROTECTION](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/SECRET-PROTECTION.md): If you do not control the backend API(s) being protected, and are therefore unable to modify it to check Approov tokens, you can use this approach instead. It allows app secrets, and API keys, to be protected so that they no longer need to be included in the built code and are only made available to passing apps at runtime.
 
 Note that it is possible to use both approaches side-by-side in the same app, in case your app uses a mixture of 1st and 3rd party APIs.
+
+See [REFERENCE](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/RFEERENCE.md) for a complete list of all of the Approov related methods supported by the plugin.

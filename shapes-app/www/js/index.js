@@ -58,29 +58,21 @@ function onDeviceReady() {
 function requestHello() {
     console.log(TAG + ": Hello button pressed. Attempting to get a hello response from the Approov shapes server...");
     updateDisplay("Checking connectivity...", "approov.png");
-
-    // cordova.plugin.http.get(url, params, headers, success, failure)
     cordova.plugin.http.get(HELLO_URL, {}, {},
         (response) => {
-            // if success, response data contains hello world string
-            if (response.status == 200) {
-                try {
-                    var hello = JSON.parse(response.data).text;
-                    console.log(TAG + ": Received a hello response from the Approov shapes server: " + hello);
-                    updateDisplay("200: OK", "hello.png");
-                } catch(e) {
-                    console.error(TAG + ": Malformed hello response, error: " + e.message);
-                    console.error(TAG + ": in: " + JSON.stringify(response));
-                    updateDisplay(e.message, "confused.png");
-                }
+            try {
+                var hello = JSON.parse(response.data).text;
+                console.log(TAG + ": Received a hello response from the Approov shapes server: " + hello);
+                updateDisplay("200: OK", "hello.png");
+            } catch(e) {
+                console.error(TAG + ": Malformed hello response, error: " + e.message);
+                console.error(TAG + ": in: " + JSON.stringify(response));
+                updateDisplay(e.message, "confused.png");
             }
         },
         (response) => {
-            if (response.status != 200) {
-                // if failure, response error contains cause
-                console.log(TAG + ": Error on hello request: " + response.status);
-                updateDisplay("" + response.status + ": " + response.error, "confused.png");
-            }
+            console.log(TAG + ": Error on hello request: " + response.status);
+            updateDisplay("" + response.status + ": " + response.error, "confused.png");
         });
 }
 
@@ -88,29 +80,21 @@ function requestHello() {
 function requestShape() {
     console.log(TAG + ": Shape button pressed. Attempting to get a shape response from the Approov shapes server...");
     updateDisplay("Checking app authenticity...", "approov.png");
-
-    // cordova.plugin.http.get(url, params, headers, success, failure)
     cordova.plugin.http.get(SHAPE_URL, {}, {"Api-Key": API_KEY},
         (response) => {
-            // if success, response data contains shape name
-            if (response.status == 200) {
-                try {
-                    var shape = JSON.parse(response.data).shape.toLowerCase();
-                    console.log(TAG + ": Received a shape response from the Approov shapes server: " + shape);
-                    updateDisplay("200: OK", shape + ".png");
-                } catch(e) {
-                    console.error(TAG + ": Malformed shape response, error: " + e.message);
-                    console.error(TAG + ": in: " + JSON.stringify(response));
-                    updateDisplay(e.message, "confused.png");
-                }
+            try {
+                var shape = JSON.parse(response.data).shape.toLowerCase();
+                console.log(TAG + ": Received a shape response from the Approov shapes server: " + shape);
+                updateDisplay("200: OK", shape + ".png");
+            } catch(e) {
+                console.error(TAG + ": Malformed shape response, error: " + e.message);
+                console.error(TAG + ": in: " + JSON.stringify(response));
+                updateDisplay(e.message, "confused.png");
             }
         },
         (response) => {
-            if (response.status != 200) {
-                // if failure, response error contains cause
-                console.log(TAG + ": Error on shape request: " + response.status);
-                updateDisplay("" + response.status + ": " + response.error, "confused.png");
-            }
+            console.log(TAG + ": Error on shape request: " + response.status);
+            updateDisplay("" + response.status + ": " + response.error, "confused.png");
         });
 }
 
@@ -118,7 +102,6 @@ function requestShape() {
 function updateDisplay(text, image) {
     if (text != null) {
         var display = document.getElementById("text");
-        // set text
         display.innerHTML = text;
     }
     if (image != null) {
@@ -127,8 +110,6 @@ function updateDisplay(text, image) {
             display.src = ""
         } else {
             var newImage = new Image;
-
-            // replace display image when ready
             newImage.onload = function () {
                 display.src = this.src;
             }
