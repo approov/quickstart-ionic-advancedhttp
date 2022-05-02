@@ -8,7 +8,9 @@ Cordova Approov Advanced HTTP
 [![GitHub Build Status](https://img.shields.io/github/workflow/status/silkimen/cordova-plugin-advanced-http/Cordova%20HTTP%20Plugin%20CI/master?label=GitHub%20Actions)](https://github.com/silkimen/cordova-plugin-advanced-http/actions)
 
 
-Cordova / Phonegap plugin for communicating with HTTP servers. This is a modified version with [Approov](https://approov.io) integration. Supports iOS and Android. The [Browser](#browserSupport) does not provide Approov protection.
+Cordova / Phonegap plugin for communicating with HTTP servers. This is a modified version with [Approov](https://approov.io) integration and supports iOS and Android. The [Browser](#browserSupport) does not provide Approov protection.
+
+Approov integration instructions are provided at [README](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/README.md), with a full reference for Approov methods in the plugin at [REFERENCE](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/REFERENCE.md).
 
 This is a fork of [Wymsee's Cordova-HTTP plugin](https://github.com/wymsee/cordova-HTTP).
 
@@ -492,6 +494,7 @@ It's meant for testing purposes, not for production grade usage.
 
 Following features are *not* supported:
 
+* Approov integration
 * Manipulating Cookies
 * Uploading and Downloading files
 * Pinning SSL certificate

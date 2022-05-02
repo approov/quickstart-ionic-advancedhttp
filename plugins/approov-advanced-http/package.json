@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-approov-advanced-http",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Cordova plugin for communicating with HTTP servers with Approov integration and dynamic SSL pinning",
   "scripts": {
     "update:cert": "node ./scripts/update-e2e-server-cert.js && node ./scripts/update-e2e-client-cert.js",
