@@ -144,7 +144,7 @@ public class ApproovService {
    * due to a networking failure. If this is called then the backend API can receive calls without the
    * expected Approov token header being added, or without header/query parameter substitutions being
    * made. Note that this should be used with caution because it may allow a connection to be established
-   * before any dynamic pins have been received via Approov. thus potentially opening the channel to a MitM.
+   * before any dynamic pins have been received via Approov, thus potentially opening the channel to a MitM.
    */
   public synchronized void setProceedOnNetworkFail() {
     Log.d(TAG, "setProceedOnNetworkFail");
@@ -715,7 +715,7 @@ public class ApproovService {
       Approov.fetchConfig();
       Log.d(TAG, "dynamic configuration update received");
     }
-    
+
     // check the status of Approov token fetch
     if (approovResults.getStatus() == Approov.TokenFetchStatus.SUCCESS)
       // we successfully obtained a token so add it to the header for the request

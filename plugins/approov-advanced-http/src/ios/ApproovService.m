@@ -199,7 +199,7 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
  * due to a networking failure. If this is called then the backend API can receive calls without the
  * expected Approov token header being added, or without header/query parameter substitutions being
  * made. Note that this should be used with caution because it may allow a connection to be established
- * before any dynamic pins have been received via Approov. thus potentially opening the channel to a MitM.
+ * before any dynamic pins have been received via Approov, thus potentially opening the channel to a MitM.
  */
 - (void)setProceedOnNetworkFail {
     // no need to synchronize on this
