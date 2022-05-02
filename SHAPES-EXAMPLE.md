@@ -172,9 +172,17 @@ If you don't get a valid shape then there are some things you can try. Remember 
 
 ## SHAPES APP WITH SECRET PROTECTION
 
-This section provides an illustration of an alternative option for Approov protection if you are not able to modify the backend to add an Approov Token check. Firstly, revert any previous change to `cordova-advanced-http/shapes-app/www/js/index.js` for `SHAPE_URL` so that it uses `https://shapes.approov.io/v1/shapes/`, which simply checks for an API key.
+This section provides an illustration of an alternative option for Approov protection if you are not able to modify the backend to add an Approov Token check.
+
+Firstly, revert any previous change to `cordova-advanced-http/shapes-app/www/js/index.js` for `SHAPE_URL` so that it uses `https://shapes.approov.io/v1/shapes/`, which simply checks for an API key.
 
 The `API_KEY` should also be changed to `shapes_api_key_placeholder`, removing the actual API key out of the code.
+
+We need to inform Approov that it needs to substitute the placeholder value for the real API key on the `Api-Key` header. Find this line and uncomment it:
+
+```Javascript
+cordova.plugin.http.approovAddSubstitutionHeader("Api-Key", "");
+```
 
 Next we enable the [Secure Strings](https://approov.io/docs/latest/approov-usage-documentation/#secure-strings) feature:
 
@@ -192,13 +200,7 @@ approov secstrings -addKey shapes_api_key_placeholder -predefinedValue yXClypapW
 
 > Note that this command also requires an [admin role](https://approov.io/docs/latest/approov-usage-documentation/#account-access-roles).
 
-Next we need to inform Approov that it needs to substitute the placeholder value for the real API key on the `Api-Key` header. Find this line and uncomment it:
-
-```Javascript
-cordova.plugin.http.approovAddSubstitutionHeader("Api-Key", "");
-```
-
-Build, run and registerr the app again as follows. For Android:
+Build, run and register the app again as follows. For Android:
 
 ```
 cordova build android

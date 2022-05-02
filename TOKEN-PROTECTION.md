@@ -4,7 +4,7 @@ You should use this option if you wish to protect access to your APIs using an A
 These steps require access to the [Approov CLI](https://approov.io/docs/latest/approov-cli-tool-reference/), please follow the [Installation](https://approov.io/docs/latest/approov-installation/) instructions.
 
 ## ADDING API DOMAINS
-In order for Approov tokens to be added by the interceptor for particular API domains it is necessary to inform Approov about them. Execute the following command:
+In order for Approov tokens to be added by the plugin for particular API domains it is necessary to inform Approov about them. Execute the following command:
 
 ```
 approov api -add <your-domain>
@@ -42,7 +42,7 @@ Note, the `-bitcode` option must be used because the Cordova plugin uses the bit
 
 See [Getting Started With Approov](https://approov.io/docs/latest/approov-usage-documentation/#getting-started-with-approov) for information about additional Approov features you may wish to try.
 
-The quickstart also provides the following additional methods:
+The following features may be of relevance to your application.
 
 ### Changing Approov Token Header Name
 The default header name of `Approov-Token` can be changed as follows:
