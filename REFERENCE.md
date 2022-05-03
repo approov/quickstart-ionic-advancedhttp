@@ -15,7 +15,7 @@ Initializes the Approov SDK and thus enables the Approov features. The `config` 
 cordova.plugin.http.approovInitialize(config, success, failure);
 ```
 
-If the initialization completes successfully then the `success` function is called. If there is an error then the `failure` functon is called with an error parameter.
+If the initialization completes successfully then the `success` function is called. If there is an error then the `failure` function is called with an error parameter.
 
 ## SetProceedOnNetworkFail
 Indicates that the network interceptor should proceed anyway if it is not possible to obtain an Approov token due to a networking failure. If this is called then the backend API can receive calls without the expected Approov token header being added, or without header/query parameter substitutions being made. This should only ever be used if there is some particular reason, perhaps due to local network conditions, that you believe that traffic to the Approov cloud service will be particularly problematic.
@@ -91,7 +91,7 @@ Performs a fetch to lower the effective latency of a subsequent token fetch or s
 cordova.plugin.http.approovPrefetch(success, failure);
 ```
 
-If the prefetch completes successfully then the `success` function is called. If there is an error then the `failure` functon is called with an error parameter.
+If the prefetch completes successfully then the `success` function is called. If there is an error then the `failure` function is called with an error parameter.
 
 ## Precheck
 Performs a precheck to determine if the app will pass attestation. This requires [secure strings](https://approov.io/docs/latest/approov-usage-documentation/#secure-strings) to be enabled for the account, although no strings need to be set up. This will likely require network access so may take some time to complete.
@@ -100,7 +100,7 @@ Performs a precheck to determine if the app will pass attestation. This requires
 cordova.plugin.http.approovPrecheck(success, failure);
 ```
 
-If the precheck completes successfully then the `success` function is called. If there is an error then the `failure` functon is called with an error parameter.
+If the precheck completes successfully then the `success` function is called. If there is an error then the `failure` function is called with an error parameter.
 
 ## GetDeviceID
 Gets the [device ID](https://approov.io/docs/latest/approov-usage-documentation/#extracting-the-device-id) used by Approov to identify the particular device that the SDK is running on. Note that different Approov apps on the same device will return a different ID. Moreover, the ID may be changed by an uninstall and reinstall of the app.
@@ -109,7 +109,7 @@ Gets the [device ID](https://approov.io/docs/latest/approov-usage-documentation/
 cordova.plugin.http.approovGetDeviceID(success, failure);
 ```
 
-If the device ID fetch completes successfully then the `success` function is called with a parameter providing the device ID. If there is an error then the `failure` functon is called with an error parameter.
+If the device ID fetch completes successfully then the `success` function is called with a parameter providing the device ID. If there is an error then the `failure` function is called with an error parameter.
 
 ## SetDataHashInToken
 Directly sets the [token binding](https://approov.io/docs/latest/approov-usage-documentation/#token-binding) hash from the given `data` to be included in subsequently fetched Approov tokens. If the hash is different from any previously set value then this will cause the next token fetch operation to fetch a new token with the correct payload data hash. The hash appears in the `pay` claim of the Approov token as a base64 encoded string of the SHA256 hash of the data. Note that the data is hashed locally and never sent to the Approov cloud service. This is an alternative to using `SetBindingHeader` and you should not use both methods at the same time.
@@ -118,7 +118,7 @@ Directly sets the [token binding](https://approov.io/docs/latest/approov-usage-d
 cordova.plugin.http.approovSetDataHashInToken(data, success, failure);
 ```
 
-If the data hash setting completes successfully then the `success` function is called. If there is an error then the `failure` functon is called with an error parameter.
+If the data hash setting completes successfully then the `success` function is called. If there is an error then the `failure` function is called with an error parameter.
 
 ## FetchToken
 Performs an Approov token fetch for the given `url`. This should be used in situations where it is not possible to use the networking interception to add the token. This will likely require network access so may take some time to complete.
@@ -127,7 +127,7 @@ Performs an Approov token fetch for the given `url`. This should be used in situ
 cordova.plugin.http.approovFetchToken(url, success, failure);
 ```
 
-If the token fetch completes successfully then the `success` function is called with a parameter providing the token. If there is an error then the `failure` functon is called with an error parameter.
+If the token fetch completes successfully then the `success` function is called with a parameter providing the token. If there is an error then the `failure` function is called with an error parameter.
 
 ## GetMessageSignature
 Gets the [message signature](https://approov.io/docs/latest/approov-usage-documentation/#message-signing) for the given `message`. This uses an account specific message signing key that is transmitted to the SDK after a successful fetch if the facility is enabled for the account. Note that if the attestation failed then the signing key provided is actually random so that the signature will be incorrect. An Approov token should always be included in the message being signed and sent alongside this signature to prevent replay attacks.
@@ -136,7 +136,7 @@ Gets the [message signature](https://approov.io/docs/latest/approov-usage-docume
 cordova.plugin.http.approovGetMessageSignature(message, success, failure);
 ```
 
-If the message signing completes successfully then the `success` function is called with a parameter providing the base64 encoded signature. If there is an error then the `failure` functon is called with an error parameter.
+If the message signing completes successfully then the `success` function is called with a parameter providing the base64 encoded signature. If there is an error then the `failure` function is called with an error parameter.
 
 ## FetchSecureString
 Fetches a [secure string](https://approov.io/docs/latest/approov-usage-documentation/#secure-strings) with the given `key`. If `newDef` is not `null` then a secure string for the particular app instance may be defined. In this case the new value is returned as the secure string. Use of an empty string for `newDef` removes the string entry. Note that the returned string should NEVER be cached by your app, you should call this function when it is needed.
@@ -145,7 +145,7 @@ Fetches a [secure string](https://approov.io/docs/latest/approov-usage-documenta
 cordova.plugin.http.approovFetchSecureString(key, newDef, success, failure);
 ```
 
-If the secure string fetch completes successfully then the `success` function is called with a parameter providing the secure string value (or `null` if not defined). If there is an error then the `failure` functon is called with an error parameter.
+If the secure string fetch completes successfully then the `success` function is called with a parameter providing the secure string value (or `null` if not defined). If there is an error then the `failure` function is called with an error parameter.
 
 ## FetchCustomJWT
 Fetches a [custom JWT](https://approov.io/docs/latest/approov-usage-documentation/#custom-jwts) with the given marshaled JSON `payload`.
@@ -154,4 +154,4 @@ Fetches a [custom JWT](https://approov.io/docs/latest/approov-usage-documentatio
 cordova.plugin.http.approovFetchCustomJWT(payload, success, failure);
 ```
 
-If the custom JWT fetch completes successfully then the `success` function is called with a parameter providing the custom JWT. If there is an error then the `failure` functon is called with an error parameter.
+If the custom JWT fetch completes successfully then the `success` function is called with a parameter providing the custom JWT. If there is an error then the `failure` function is called with an error parameter.
