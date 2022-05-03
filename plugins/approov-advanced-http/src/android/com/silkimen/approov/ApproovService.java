@@ -735,7 +735,7 @@ public class ApproovService {
       throw new IOException("Approov token fetch for " + host + ": " + approovResults.getStatus().toString());
 
     // we only continue additional processing if we had a valid status from Approov, to prevent additional delays
-    // by trying to fetch from Approov again and this also protects against header substiutions in domains not
+    // by trying to fetch from Approov again and this also protects against header substitutions in domains not
     // protected by Approov and therefore potential subject to a MitM
     if ((approovResults.getStatus() == Approov.TokenFetchStatus.SUCCESS) ||
         (approovResults.getStatus() == Approov.TokenFetchStatus.UNPROTECTED_URL)) {
