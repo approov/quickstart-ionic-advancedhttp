@@ -1,7 +1,7 @@
 # Reference
 This provides a reference for all of the Approov related methods that are implemented in the plugin.
 
-Some methods have `success` and `failure` completion functions. The `faulure` function always has a single `error` parameter which provides a map with the following entries:
+Some methods have `success` and `failure` completion functions. The `failure` function always has a single `error` parameter which provides a map with the following entries:
 
 * `type`: Type of the error which may be `general`, `network` or `rejection`. If the type is `network` then this indicates that the error was caused by a temporary networking issue, so an option should be provided to the user to retry.
 * `message`: A descriptive error message.
@@ -9,7 +9,7 @@ Some methods have `success` and `failure` completion functions. The `faulure` fu
 * `rejectionReasons`: Only provided for a `rejection` error type. If the [Rejection Reasons](https://approov.io/docs/latest/approov-usage-documentation/#rejection-reasons) feature is enabled, this provides a comma separated list of reasons why the app attestation was rejected.
 
 ## Initialize
-Initializes the Approov SDK and thus enables the Approov features. The `config` will have been provided in the initial onboarding or email or can be [obtained](https://approov.io/docs/latest/approov-usage-documentation/#getting-the-initial-sdk-configuration) using the approov CLI. This will generate an error if a second attempt is made at initialization with a different `config`.
+Initializes the Approov SDK and thus enables the Approov features. The `config` will have been provided in the initial onboarding or email or can be [obtained](https://approov.io/docs/latest/approov-usage-documentation/#getting-the-initial-sdk-configuration) using the Approov CLI. This will generate an error if a second attempt is made at initialization with a different `config`.
 
 ```Javascript
 cordova.plugin.http.approovInitialize(config, success, failure);
