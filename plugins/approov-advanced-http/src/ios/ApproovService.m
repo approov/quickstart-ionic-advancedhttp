@@ -159,7 +159,7 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
  * ApproovService has already been initialized with the same configuration string.
  *
  * @param config is the string to be used for initialization, or empty string for no initialization
- * @reurn ApproovResult showing if the initialization was successful, or provides an error otherwise
+ * @return ApproovResult showing if the initialization was successful, or provides an error otherwise
  */
 - (ApproovResult *)initialize:(NSString *)config {
     @synchronized(initializerLock) {

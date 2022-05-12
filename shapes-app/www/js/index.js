@@ -17,16 +17,16 @@
 
 var HELLO_URL = "https://shapes.approov.io/v1/hello";
 
-// COMMENT THE LINE BELOW IF USING APPROOV WITH TOKEN PROTECTION
+// COMMENT THE LINE BELOW IF USING APPROOV WITH API PROTECTION
 var SHAPE_URL = "https://shapes.approov.io/v1/shapes";
 
-// UNCOMMENT THE LINE BELOW IF USING APPROOV WITH TOKEN PROTECTION
+// UNCOMMENT THE LINE BELOW IF USING APPROOV WITH API PROTECTION
 //var SHAPE_URL = "https://shapes.approov.io/v3/shapes";
 
-// COMMENT THE LINE BELOW IF USING APPROOV WITH SECRET PROTECTION
+// COMMENT THE LINE BELOW IF USING APPROOV WITH SECRETS PROTECTION
 var API_KEY = "yXClypapWNHIifHUWmBIyPFAm";
 
-// UNCOMMENT THE LINE BELOW IF USING APPROOV WITH SECRET PROTECTION
+// UNCOMMENT THE LINE BELOW IF USING APPROOV WITH SECRETS PROTECTION
 //var API_KEY = "shapes_api_key_placeholder";
 
 // Tag for logging
@@ -46,7 +46,7 @@ function onDeviceReady() {
             console.log(TAG + ": Approov initialization error: " + err.message);
         });*/
 
-    // UNCOMMENT IF USING APPROOV WITH SECRET PROTECTION
+    // UNCOMMENT IF USING APPROOV WITH SECRETS PROTECTION
     //cordova.plugin.http.approovAddSubstitutionHeader("Api-Key", "");
 
     document.getElementById("helloButton").onclick = requestHello;
