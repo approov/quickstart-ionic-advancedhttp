@@ -58,7 +58,7 @@ On Android, you can see logging using [`logcat`](https://developer.android.com/s
 Your Approov onboarding email should contain a link allowing you to access [Live Metrics Graphs](https://approov.io/docs/latest/approov-usage-documentation/#metrics-graphs). After you've run your app with Approov integration you should be able to see the results in the live metrics within a minute or so. At this stage you could even release your app to get details of your app population and the attributes of the devices they are running upon.
 
 ## NEXT STEPS
-To actually protect your APIs there are some further steps. Approov provides two different options for protecting APIs:
+To actually protect your APIs there are some further steps. Approov provides two different options for protection:
 
 * [API PROTECTION](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/API-PROTECTION.md): You should use this if you control the backend API(s) being protected and are able to modify them to ensure that a valid Approov token is being passed by the app. An [Approov Token](https://approov.io/docs/latest/approov-usage-documentation/#approov-tokens) is short lived crytographically signed JWT proving the authenticity of the call.
 
