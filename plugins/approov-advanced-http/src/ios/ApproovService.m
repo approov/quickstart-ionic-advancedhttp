@@ -559,7 +559,7 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
 
     // ensure the connection is pinned if the domain is added using Approov - we must do this even for potentially
     // excluded URLs because if they are on the same domain as an Approov protected URL then the TLS connection might
-    // remain live from an initial exluded URL connection event
+    // remain live from an initial excluded URL connection event
     [ApproovService setupApproovPublicKeyPinning:manager];
 
     // obtain a copy of the exclusion URL regular expressions in a thread safe way
