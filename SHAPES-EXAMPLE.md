@@ -97,7 +97,7 @@ Uncomment the three lines of Approov initialization code in `cordova-advanced-ht
 cordova.plugin.http.approovInitialize("<enter-your-config-string-here>",
 ```
 
-The Approov SDK needs a configuration string to identify the account associated with the app. It will have been provided in the Approov onboarding email (it will be something like `#123456#K/XPlLtfcwnWkzv99Wj5VmAxo4CrU267J1KlQyoz8Qo=`). Copy this into `io/approov/shapes/ShapesApp.java:34`, replacing the text `<enter-your-config-string-here>`.
+The Approov SDK needs a configuration string to identify the account associated with the app. It will have been provided in the Approov onboarding email (it will be something like `#123456#K/XPlLtfcwnWkzv99Wj5VmAxo4CrU267J1KlQyoz8Qo=`). Copy this and use it to replace the text `<enter-your-config-string-here>`.
 
 You should also change the Shapes endpoint the app is using by uncommenting the line:
 
@@ -121,8 +121,6 @@ For Android:
 cordova build android
 approov registration -add platforms/android/app/build/outputs/apk/debug/app-debug.apk
 ```
-
-Note, on Windows you need to substitute \ for / in the above commands.
 
 For iOS:
 
