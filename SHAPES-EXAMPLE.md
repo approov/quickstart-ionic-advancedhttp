@@ -113,7 +113,7 @@ In a shell terminal at the `cordova-advanced-http/shapes-app` directory, type th
 
 In order for Approov to recognize the app as being valid it needs to be built and registered with the service. Change directory to the top level of the `shapes-app` project and then register the app with Approov:
 
-Approov command line tools are provided for Windows, MacOS, and Linux platforms. Select the proper operating system executable. In a shell in your `cordova-advanced-http/shapes-app` directory:
+Approov command line tools are provided for MacOS and Linux platforms. Select the proper operating system executable. In a shell in your `cordova-advanced-http/shapes-app` directory:
 
 For Android:
 
@@ -198,7 +198,7 @@ approov secstrings -addKey shapes_api_key_placeholder -predefinedValue yXClypapW
 
 > Note that this command also requires an [admin role](https://approov.io/docs/latest/approov-usage-documentation/#account-access-roles).
 
-Build, run and register the app again as follows. For Android:
+Build, register and run the app again as follows. For Android:
 
 ```
 cordova build android
@@ -214,7 +214,7 @@ approov registration -add platforms/ios/build/device/CordovaApproovShapes.ipa -b
 cordova run ios
 ```
 
-Run the app again without making any changes to the app and press the `Get Shape` button. You should now see this (or another shape):
+Press the `Get Shape` button. You should now see this (or another shape):
 
 <a>
     <img src="readme-images/cordova-shape-square.png" width="256" title="Square">
