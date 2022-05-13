@@ -206,8 +206,6 @@ approov registration -add platforms/android/app/build/outputs/apk/debug/app-debu
 cordova run android
 ```
 
-Note, on Windows you need to substitute \ for / in the above commands.
-
 For iOS:
 
 ```

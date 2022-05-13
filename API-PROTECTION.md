@@ -23,8 +23,6 @@ cordova build android
 approov registration -add platforms/android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Note, on Windows you need to substitute \ for / in the above commands.
-
 For iOS:
 
 ```
