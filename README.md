@@ -4,7 +4,7 @@ This quickstart is written specifically for Android and iOS apps that are implem
 
 The version of [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http) provided is based on version [3.3.1](https://github.com/silkimen/cordova-plugin-advanced-http/blob/master/CHANGELOG.md).
 
- basic steps for integrating Approov into your app. A more detailed step-by-step guide using a [Shapes App Example](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/SHAPES-EXAMPLE.md) is also available.
+This quickstart provides the basic steps for integrating Approov into your app. A more detailed step-by-step guide using a [Shapes App Example](https://github.com/approov/quickstart-cordova-advancedhttp/blob/master/SHAPES-EXAMPLE.md) is also available.
 
 To follow this guide you should have received an onboarding email for a trial or paid Approov account.
 

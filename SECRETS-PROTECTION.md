@@ -105,10 +105,7 @@ approov policy -setRejectionReasons on
 You will then be able to get information in `rejectionReasons` in the form of a comma separated list of [device properties](https://approov.io/docs/latest/approov-usage-documentation/#device-properties) responsible for causing the rejection.
 
 ## FURTHER OPTIONS
-
 See [Getting Started With Approov](https://approov.io/docs/latest/approov-usage-documentation/#getting-started-with-approov) for information about additional Approov features you may wish to try.
-
-The quickstart also provides the following additional methods:
 
 ### Header Prefixes
 In some cases the value to be substituted on a header may be prefixed by some fixed string. A common case is the presence of `Bearer` included in an authorization header to indicate the use of a bearer token. In this case you can specify a prefix as follows:
