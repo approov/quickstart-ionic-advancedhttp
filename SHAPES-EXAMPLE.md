@@ -74,7 +74,7 @@ In a shell terminal at the `cordova-advanced-http/shapes-app` directory, type th
 
 ```
 cordova plugin remove cordova-plugin-advanced-http
-cordova plugin add cordova-plugin-approov-advanced-http
+cordova plugin add @approov/cordova-plugin-advanced-http
 ```
 
 This removes the standard plugin and installs the Approov capable plugin from [npm](https://www.npmjs.com/).

@@ -21,7 +21,7 @@ It is not possible to have this plugin in your project at the same time as the A
 Next add the Approov capable version of the advanced HTTP plugin:
 
 ```
-cordova plugin add cordova-plugin-approov-advanced-http
+cordova plugin add @approov/cordova-plugin-advanced-http
 ```
 
 This installs the Approov capable plugin from [npm](https://www.npmjs.com/). The plugin provides exactly the same interface but with some additional methods to control the Approov integration. Thus there is no need to change the API request in your app. If Approov is not initialized then these are performed as normal without attempting to add any Approov capabilities.

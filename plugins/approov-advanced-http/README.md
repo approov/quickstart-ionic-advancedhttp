@@ -31,9 +31,9 @@ The plugin conforms to the Cordova plugin specification, it can be installed
 using the Cordova / Phonegap command line interface.
 
 ```shell
-phonegap plugin add cordova-plugin-approov-advanced-http
+phonegap plugin add @approov/cordova-plugin-advanced-http
 
-cordova plugin add cordova-plugin-approov-advanced-http
+cordova plugin add @approov/cordova-plugin-advanced-http
 ```
 
 ### Plugin Preferences
