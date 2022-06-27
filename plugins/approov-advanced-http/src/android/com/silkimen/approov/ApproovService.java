@@ -190,11 +190,11 @@ public class ApproovService {
    */
   public synchronized void addSubstitutionHeader(String header, String requiredPrefix) {
     if (requiredPrefix == null) {
-        Log.d(TAG, "addSubtitutionHeader " + header);
+        Log.d(TAG, "addSubstitutionHeader " + header);
         substitutionHeaders.put(header, "");
     }
     else {
-        Log.d(TAG, "addSubtitutionHeader " + header + ", " + requiredPrefix);
+        Log.d(TAG, "addSubstitutionHeader " + header + ", " + requiredPrefix);
         substitutionHeaders.put(header, requiredPrefix);
     }
   }
@@ -205,7 +205,7 @@ public class ApproovService {
    * @param header is the header to be removed for substitution
    */
   public synchronized void removeSubstitutionHeader(String header) {
-    Log.d(TAG, "removeSubtitutionHeader " + header);
+    Log.d(TAG, "removeSubstitutionHeader " + header);
     substitutionHeaders.remove(header);
   }
 
@@ -230,10 +230,10 @@ public class ApproovService {
     try {
       Pattern pattern = Pattern.compile("[\\?&]"+key+"=([^&;]+)");
       substitutionQueryParams.put(key, pattern);
-      Log.d(TAG, "addSubtitutionQueryParam " + key);
+      Log.d(TAG, "addSubstitutionQueryParam " + key);
     }
     catch (PatternSyntaxException e) {
-      Log.e(TAG, "addSubtitutionQueryParam " + key + " error: " + e.getMessage());
+      Log.e(TAG, "addSubstitutionQueryParam " + key + " error: " + e.getMessage());
     }
   }
 
@@ -243,7 +243,7 @@ public class ApproovService {
    * @param key is the query parameter key name to be removed for substitution
    */
   public synchronized void removeSubstitutionQueryParam(String key) {
-    Log.d(TAG, "removeSubtitutionQueryParam " + key);
+    Log.d(TAG, "removeSubstitutionQueryParam " + key);
     substitutionQueryParams.remove(key);
   }
 
