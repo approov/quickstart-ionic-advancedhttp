@@ -564,7 +564,7 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
     NSString *host = [[NSURL URLWithString:url] host];
     if ([host isEqualToString:@"localhost"]) {
         NSLog(@"%@: localhost forwarded: %@", TAG, url);
-        return request;
+        return url;
     }
 
     // ensure the connection is pinned if the domain is added using Approov - we must do this even for potentially
