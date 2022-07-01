@@ -680,22 +680,32 @@ public class ApproovService {
    */
   public void updateRequestWithApproov(HttpRequest request) throws IOException {
     // just return if Approov has not been initialized
-    if (!isInitialized)
+    URL url = request.url();
+    String urlString = url.toString();
+    if (!isInitialized) {
+      Log.d(TAG, "uninitialized forwarded: " + urlString);
       return;
+    }
 
+    // requests to localhost are just forwarded
+    String host = url.getHost();
+    if (host.equals("localhost")) {
+      Log.d(TAG, "localhost forwarded: " + urlString);
+      return;
+    }
 
     // ensure the connection is pinned even for excluded URLs since we need to ensure that if the same
     // connection is used for protected requests then it will have been properly pinned
     setupApproovCertPinning(request);
 
     // check if the URL matches one of the exclusion regexs and just return if so
-    URL url = request.url();
-    String urlString = url.toString();
     Map<String, Pattern> exclusionURLs = getExclusionURLRegexs();
     for (Pattern pattern: exclusionURLs.values()) {
       Matcher matcher = pattern.matcher(urlString);
-      if (matcher.find())
+      if (matcher.find()) {
+        Log.d(TAG, "excluded url: " + urlString);
         return;
+      }
     }
 
     // update the data hash based on any token binding header
@@ -706,7 +716,6 @@ public class ApproovService {
     }
 
     // request an Approov token for the domain
-    String host = url.getHost();
     Approov.TokenFetchResult approovResults = Approov.fetchApproovTokenAndWait(host);
     Log.d(TAG, "token for " + host + ": " + approovResults.getLoggableToken());
 

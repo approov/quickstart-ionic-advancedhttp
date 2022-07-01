@@ -554,8 +554,18 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
  */
 - (NSString *)addApproovToSessionManager:(SM_AFHTTPSessionManager *)manager URL:(NSString *)url {
     // if the Approov SDK is not initialized then we just return immediately without making any changes
-    if (!isInitialized)
+    if (!isInitialized) {
+        NSLog(@"%@: uninitialized forwarded: %@", TAG, url);
         return url;
+    }
+
+    // we always allow requests to "localhost" without Approov protection as can be used for obtaining resources
+    // during development
+    NSString *host = [[NSURL URLWithString:url] host];
+    if ([host isEqualToString:@"localhost"]) {
+        NSLog(@"%@: localhost forwarded: %@", TAG, url);
+        return request;
+    }
 
     // ensure the connection is pinned if the domain is added using Approov - we must do this even for potentially
     // excluded URLs because if they are on the same domain as an Approov protected URL then the TLS connection might
@@ -574,8 +584,10 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:exclusionURL options:0 error:&error];
         if (!error) {
             NSTextCheckingResult *match = [regex firstMatchInString:url options:0 range:NSMakeRange(0, [url length])];
-            if (match)
+            if (match) {
+                NSLog(@"%@: excluded url: %@", TAG, url);
                 return url;
+            }
         }
     }
 
@@ -590,7 +602,6 @@ NSMutableSet<NSString *> *exclusionURLRegexs = nil;
 
     // fetch the Approov token and log the result
     ApproovTokenFetchResult *approovResult = [Approov fetchApproovTokenAndWait:url];
-    NSString *host = [[NSURL URLWithString:url] host];
     NSLog(@"%@: token for %@: %@", TAG, host, [approovResult loggableToken]);
 
     // log if a configuration update is received and call fetchConfig to clear the update state
