@@ -165,7 +165,7 @@ public class CordovaHttpPlugin extends CordovaPlugin implements Observer {
         error.put("type", result.errorType);
         error.put("message", result.errorMessage);
         if (result.rejectionARC != null)
-          error.put("arc", result.rejectionARC);
+          error.put("rejectionARC", result.rejectionARC);
         if (result.rejectionReasons != null)
           error.put("rejectionReasons", result.rejectionReasons);
       }
