@@ -1,5 +1,4 @@
 #import "CordovaHttpPlugin.h"
-#import "CDVFile.h"
 #import "BinaryRequestSerializer.h"
 #import "BinaryResponseSerializer.h"
 #import "TextResponseSerializer.h"
@@ -7,6 +6,14 @@
 #import "SM_AFHTTPSessionManager.h"
 #import "SDNetworkActivityIndicator.h"
 #import "ApproovService.h"
+
+// this definition should really come from CDVFile.h for the plugin:
+//  https://cordova.apache.org/docs/en/11.x/reference/cordova-plugin-file/
+// on which this plugin is dependent - however the header does not always seem to be
+// visible so we explicitly declare the only method we need here
+@interface CDVFile: CDVPlugin
+- (NSDictionary *)getDirectoryEntry:(NSString *)target isDirectory:(BOOL)bDirRequest;
+@end 
 
 @interface CordovaHttpPlugin()
 
