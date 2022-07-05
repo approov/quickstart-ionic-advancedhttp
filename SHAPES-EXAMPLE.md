@@ -18,7 +18,14 @@ This quickstart is written specifically for Android and iOS apps that are implem
 
 A number of different variants of the shapes app are provided, namely `cap-angular`, `cap-react` and `cap-vue`, showing the use of different app flavours. This run through will use `cap-angular`, but it is possible to go through the steps using any of these different variants. Just be aware that the filenames and location of Approov specific commented out code may be different for the other variants.
 
-Firstly, clone this repo and `cd demos/cap-angular`. You can then run on either Android or iOS as follows:
+Firstly, clone this repo and do the following to install dependencies in `cap-angular`:
+
+```
+cd demos/cap-angular
+npm install
+```
+
+You can then run on either Android or iOS as follows:
 
 ### Android
 
