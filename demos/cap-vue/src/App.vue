@@ -13,10 +13,9 @@
             style="height: calc(100% - 80px); flex-direction: column"
         >
           <div class="ion-text-center">
-            <ion-img :src="imageUrl" style="margin: 0 30px"></ion-img>
+            <img :src="imageUrl">
             <ion-spinner v-if="isLoading" name="crescent"></ion-spinner>
             <p>{{ message }}</p>
-            <p v-if="loggableToken">{{ loggableToken }}</p>
           </div>
         </ion-row>
         <ion-row>
@@ -54,18 +53,28 @@ import {
   IonHeader
 } from '@ionic/vue';
 import {defineComponent} from 'vue';
-import {ApproovHttp, HTTPResponse} from '@ionic-native/approov-advanced-http';
+
+// COMMENT WHEN USING APPROOV
+import { HTTP, HTTPResponse } from '@awesome-cordova-plugins/http';
+
+// UNCOMMENT WHEN USING APPROOV
+//import { HTTP, HTTPResponse } from '@awesome-cordova-plugins/approov-advanced-http';
 
 const HOST = 'https://shapes.approov.io';
-const imageBaseUrl = 'assets/';
+const imageBaseUrl = './assets/';
 const imageExtension = 'png';
-const VERSION = 'v1' as string; // Change To v2 when using Approov
+
+// ChANGE TO v3 FOR APPROOV API PROTECTION; SHOULD BE v1 OTHERWISE
+const VERSION = 'v1' as string;
+
 const HELLO_URL = `${HOST}/v1/hello`;
 const SHAPE_URL = `${HOST}/${VERSION}/shapes`;
 
-function isApproov(): boolean {
-  return VERSION === 'v2';
-}
+// COMMENT IF USING APPOROV WITH SECRETS PROTECTION
+const API_KEY = `yXClypapWNHIifHUWmBIyPFAm`;
+
+// UNCOMMENT IF USING APPOROV WITH SECRETS PROTECTION
+//const API_KEY = `shapes_api_key_placeholder`;
 
 export default defineComponent({
   name: 'App',
@@ -84,44 +93,41 @@ export default defineComponent({
       imageUrl: this.getImageUrl('approov'),
       message: 'Tap Hello to Start...',
       isLoading: false,
-      loggableToken: ''
     };
   },
 
   created() {
-    if (isApproov()) {
-      ApproovHttp.initializeApproov();
-    }
+      // UNCOMMENT IF USING APPROOV
+      //HTTP.approovInitialize("<enter-your-config-string-here>");
+
+      // UNCOMMENT IF USING APPROOV SECRETS PROTECTION
+      //HTTP.approovAddSubstitutionHeader("Api-Key", "");
   },
 
   methods: {
     async onHelloClick() {
       this.presentLoadingIndicator();
       try {
-        const response = await ApproovHttp.get(HELLO_URL, {}, {});
+        const response = await HTTP.get(HELLO_URL, {}, {});
         this.hideLoadingIndicator();
         const data = JSON.parse(response.data);
         this.message = data.text;
         this.imageUrl = this.getImageUrl('hello');
       } catch (err) {
-        this.onAPIError(err);
+        this.onAPIError(err as HTTPResponse);
       }
     },
 
     async onShapeClick() {
       this.presentLoadingIndicator();
       try {
-        const response = await ApproovHttp.get(SHAPE_URL, {}, {});
+        const response = await HTTP.get(SHAPE_URL, {}, {'Api-Key': API_KEY});
         this.hideLoadingIndicator();
         const data = JSON.parse(response.data);
         this.message = data.status;
         this.imageUrl = this.getImageUrl(data.shape.toLowerCase());
       } catch (err) {
-        this.onAPIError(err);
-      }
-
-      if (isApproov()) {
-        this.loggableToken = JSON.stringify(await ApproovHttp.getApproovLoggableToken(HOST), null, 2);
+        this.onAPIError(err as HTTPResponse);
       }
     },
 
@@ -151,7 +157,6 @@ export default defineComponent({
 
     hideLoadingIndicator() {
       this.isLoading = false;
-      this.loggableToken = '';
     }
   },
 });

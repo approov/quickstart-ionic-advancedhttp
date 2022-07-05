@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApproovHttp, HTTPResponse } from '@ionic-native/approov-advanced-http/ngx';
-import { ApproovLoggableToken } from '@ionic-native/approov-advanced-http';
+
+// COMMENT THE LINE BELOW IF USING APPROOV
+import { HTTP, HTTPResponse } from '@awesome-cordova-plugins/http/ngx';
+
+// UNCOMMENT THE LINE BELOW IF USING APPROOV
+//import { HTTP, HTTPResponse } from '@awesome-cordova-plugins/approov-advanced-http/ngx';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +12,33 @@ import { ApproovLoggableToken } from '@ionic-native/approov-advanced-http';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  private http: ApproovHttp = new ApproovHttp();
+  private http: HTTP = new HTTP();
   readonly imageBaseUrl = 'assets/';
   readonly imageExtension = 'png';
   readonly host = 'https://shapes.approov.io';
-  readonly VERSION: string = 'v1'; // Change To v2 when using Approov
+
+  // CHANGE TO v3 FOR APPROOV WITH API PROTECTION; USE v1 FOR APPROOV WITH SECRETS PROTECTION
+  readonly VERSION: string = 'v1'; 
+
   readonly HELLO_URL = `${this.host}/v1/hello`;
   readonly SHAPE_URL = `${this.host}/${this.VERSION}/shapes`;
+
+  // COMMENT IF USING APPROOV WITH SECRETS PROTECTION
+  readonly API_KEY = `yXClypapWNHIifHUWmBIyPFAm`;
+
+  // UNCOMMENT IF USING APPROOV WITH SECRETS PROTECTION
+  //readonly API_KEY = `shapes_api_key_placeholder`;
+
   message = 'Tap Hello to Start...';
   imageUrl = this.getImageUrl('approov');
   isLoading = false;
-  loggableToken: ApproovLoggableToken;
 
   ngOnInit(): void {
-    if (this.isApproov()) {
-      this.http.initializeApproov();
-    }
+    // UNCOMMENT IF USING APPROOV
+    //this.http.approovInitialize("<enter-your-config-string-here>");
+
+    // UNCOMMENT IF USING APPROOV SECRETS PROTECTION
+    //this.http.approovAddSubstitutionHeader("Api-Key", "");
   }
 
   async onHelloClick() {
@@ -42,17 +57,13 @@ export class AppComponent implements OnInit {
   async onShapeClick() {
     this.presentLoadingIndicator();
     try {
-      const response = await this.http.get(this.SHAPE_URL, {}, {});
+      const response = await this.http.get(this.SHAPE_URL, {}, {'Api-Key': this.API_KEY});
       this.hideLoadingIndicator();
       const data = JSON.parse(response.data);
       this.message = data.status;
       this.imageUrl = this.getImageUrl(data.shape.toLowerCase());
     } catch (err) {
       this.onAPIError(err);
-    }
-
-    if (this.isApproov()) {
-      this.loggableToken = await this.http.getApproovLoggableToken(this.host);
     }
   }
 
@@ -79,10 +90,5 @@ export class AppComponent implements OnInit {
 
   private hideLoadingIndicator() {
     this.isLoading = false;
-    this.loggableToken = undefined;
-  }
-
-  private isApproov(): boolean {
-    return this.VERSION === 'v2';
   }
 }

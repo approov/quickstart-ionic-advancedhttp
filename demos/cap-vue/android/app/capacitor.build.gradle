@@ -9,10 +9,13 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
+    implementation project(':capacitor-app')
+    implementation project(':capacitor-haptics')
+    implementation project(':capacitor-keyboard')
+    implementation project(':capacitor-status-bar')
 
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:3.14.2"
 }
-apply from: "../../node_modules/cordova-plugin-advanced-http/src/android/approov.gradle"
+
 
 if (hasProperty('postBuildExtras')) {
   postBuildExtras()

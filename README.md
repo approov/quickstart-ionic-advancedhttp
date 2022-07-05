@@ -1,330 +1,108 @@
-# Approov Quickstart: Ionic (Angular, Vue, React)
+# Approov Quickstart: Ionic Capacitor (Angular, Vue, React)
 
-This quickstart is written specifically for Android and iOS apps that are implemented using the [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http). If this is not your situation then check if there is a more relevant Quickstart guide available.
+This quickstart is written specifically for Android and iOS apps that are implemented in [Ionic Capacitor](https://capacitorjs.com/) using the [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http), accessed via the [`HTTP plugin`](https://ionicframework.com/docs/native/http). If this is not your situation then check if there is a more relevant Quickstart guide available.
 
-## WHAT YOU WILL NEED
-* Access to a trial or paid Approov account.
-* The `approov` [command line tool](https://approov.io/docs/latest/approov-installation/) installed with access to your account.
-* The contents of the folder containing this README.
-* An iOS device if you are using the iOS platform. You may use an iOS simulator but the Approov SDK requires an actual iOS device in order to authenticate an application.
-* [Android Studio](https://developer.android.com/studio) installed (version Bumblebee 2021.1 is used in this guide) if you will build the Android app.
-* [Xcode](https://developer.apple.com/xcode/) installed (version 13.3 is used in this guide) to build iOS version of application.
-* [Cocoapods](https://cocoapods.org) installed (you must use version 1.9+ which offers support for xcframeworks).
-* [NodeJS](https://nodejs.org/en/) v14+ installed in the system.
-* [Ionic CLI](https://ionicframework.com/docs/intro/cli) installed in the system (note you may need to use `sudo` when using npm to install the Ionic CLI globally).
+This quickstart provides the basic steps for integrating Approov into your app. A more detailed step-by-step guide using a [Shapes App Example](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/SHAPES-EXAMPLE.md) is also available.
 
-## WHAT YOU WILL LEARN
-* How to integrate Approov into a real app in a step by step fashion
-* How to register your app to get valid tokens from Approov
-* A solid understanding of how to integrate Approov into your own app that uses [`Ionic Capacitor`](https://capacitorjs.com/) and [`Approov Advanced HTTP`](https://github.com/approov/quickstart-ionic-advancedhttp/tree/main/plugins/approov-advanced-http)
-* Some pointers to other Approov features
+Note that for Android the minimum supported version is 5.1 (SDK level 22). For iOS, only 64-bit devices are supported on iOS 10 or above.
 
-## RUNNING THE SHAPES APP WITHOUT APPROOV
-The Shapes App is a simple Ionic application written in Typescript, HTML and CSS, using the Approov Advanced Http built on top of Cordova Advanced HTTP networking package.
+To follow this guide you should have received an onboarding email for a trial or paid Approov account.
 
-<p>
-    <img src="readme-images/app-start.png" width="256" title="Shapes App">
-</p>
+## ADDING THE APPROOV PLUGIN
 
-The application consists mostly of boilerplate code, apart from the definitions of the shapes server’s URLs and setting up of the onclick callback for each of the buttons along the bottom of the screen.
-
-To build and run the Ionic Shapes App, open a shell terminal at the `demos/cap-*` directory and type the following commands.
-
-> Note: Before running `npm install` please force login using the Approov CLI by running:
-
-```bash
-approov sdk -list
-```
-
-Now install dependencies and build the variant of the app with (the `package-lock.json` removal is to clear invalid checksums in local packages from a previous run):
-
-```bash
-rm -f package-lock.json
-npm install
-ionic build
-```
-
-### ANDROID SPECIFIC INSTRUCTIONS
-
-Build the Android app and open the Android Studo project by executing the command below:
-
-```bash
-ionic cap sync android
-ionic cap open android
-```
-
-From there we can run / debug and generate a final APK for our project.
-
-### IOS SPECIFIC INSTRUCTIONS
-
-Build the iOS app and open the Xcode project by executing the command below:
-
-```bash
-ionic cap sync ios
-ionic cap open ios
-```
-
-Select your code signing team in the `Signing & Capabilities` section of the project. Also ensure you modify the app's `Bundle Identifier` so it contains a unique string (you can simply append your company name). This is to avoid Apple rejecting a duplicate `Bundle Identifier` when code signing is performed. Also turn off the bitcode for the application off, Since, approov-ios-sdk does not ship with bitcode enabled.
-
-Now you can run your application as any normal iOS App.
-
-### RUNNING THE INITIAL SHAPES APP
-
-The _Hello_ and _Shape_ buttons set up API requests to the shapes server, using the application’s http client. For example, the _Hello_ button initiates a `GET` request to the `shapes.approov.io/v1/hello` endpoint.
-
-On a successful _hello_ request to `/v1/hello`, the client app will say hello with a smile, while a failure or unsuccessful response will return a frown with some explanation of the error. The purpose of this simple endpoint is really just to test connectivity and to verify that you have built, installed and run the demo app correctly.
-
-<a>
-    <img src="readme-images/hello.png" width="256" title="Shapes App Good">
-</a>
-
-<a>
-    <img src="readme-images/fail.png" width="256" title="Shapes App Fail">
-</a>
-
-## ADDING APPROOV SUPPORT
-
-Since this plugin is already fetches the Approov SDK during installation there is no need for any further setup.
-
-To initialize the Approov Protection we can add this snippet anywhere in our application:
-
-```ts
-import { ApproovHttp } from '@ionic-native/approov-advanced-http';
-
-// ...
-
-ApproovHttp.initializeApproov();
-```
-
-### Adding iOS Podfile Dependency
-
-For iOS it is necessary to do a manual edit on the `Podfile` to add the Approov SDK dependency:
-
-```bash
-cd ios/App
-rm -f PodFile.lock
-```
-
-Update the `PodFile` and add `source 'https://github.com/approov/approov-ios-sdk.git'` at the top.
-
-```PodFile
-source 'https://github.com/approov/approov-ios-sdk.git'
-platform :ios, '11.0'
-use_frameworks!
-
-# workaround to avoid Xcode caching of Pods that requires
-# Product -> Clean Build Folder after new Cordova plugins installed
-# Requires CocoaPods 1.6 or newer
-install! 'cocoapods', :disable_input_output_paths => true
-
-def capacitor_pods
-  # Automatic Capacitor Pod dependencies, do not delete
-  pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
-  pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
-  pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
-  pod 'CordovaPluginsStatic', :path => '../capacitor-cordova-ios-plugins'
-  pod 'CordovaPluginsResources', :path => '../capacitor-cordova-ios-plugins'
-  # Do not delete
-end
-
-target 'App' do
-  capacitor_pods
-  # Add your Pods here
-end
-```
-
-Your source file should look similar to this. After editing this file executes the following command:
-
-```bash
-pod install --repo-update
-```
-
-Unfortunately, capacitor does not add [custom podspec sources](https://github.com/ionic-team/capacitor/issues/2774) automatically we have to do this process manually.
-
-### Select the Correct Shapes Endpoint
-
-The Shapes server provides the app with shapes using multiple versions of an API. Version 2 (https://shapes.approov.io/v2/shapes) requires a valid Approov token to be provided as part of the request.
-
-Now that we’re using Approov, let’s switch to use version 2 of the Shapes API.
-
-```ts
-// Update the VERSION from v1 to v2 for approov activation 
-
-// demos/cap-angular/src/app/app.component.ts@L15
-VERSION: string = 'v2'; // Change To v2 when using Approov
-
-// demos/cap-vue/src/App.vue@L62
-const VERSION = 'v2'; // Change To v2 when using Approov
-
-// demos/cap-react/src/App.tsx@L53
-VERSION = "v2"; // Change To v2 when using Approov
-```
-
-After the change you'll need to rebuild the application and copy the generated assets.
-
-```bash
-ionic build
-ionic cap copy <ios|android>
-```
-
-There will be no need to make any extra change as the code will automatically initialize approov as soon as v2 is activated.
-
-### Ensure the Shapes API is added in Approov CLI
-
-In order for Approov tokens to be generated for `https://shapes.approov.io/v2/shapes` it is necessary to inform Approov about it. If you are using a demo account this is unnecessary as it is already set up. For a trial account do:
+It is assumed that your starting point is an app that already uses the [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http) plugin and the [`@awesome-cordova-plugins`](https://github.com/danielsogl/awesome-cordova-plugins) wrapper (previously called `@ionic-native`) so that it can be used in an Ionic app. You must first remove these from your project as follows:
 
 ```
-approov api -add shapes.approov.io
+npm uninstall @awesome-cordova-plugins/http 
+npm uninstall cordova-plugin-advanced-http
 ```
 
-Tokens for this domain will be automatically signed with the specific secret for this domain, rather than the normal one for your account. After a short delay of no more than 30 seconds the new API settings become active.
+It is not possible to have this plugin in your project at the same time as the Approov enabled one. However, you can control which domains are protected using Approov via its configuration.
 
-### Build and Run the App Again
-
-Build the app on your preferred platform. If you are targeting iOS, a physical device is needed since Approov does not authenticate apps running on iOS simulators. Please, remember to adjust your codesigning certificate options, since the iOS Project has been created again.
-
-Run the app on a device or an emulator (Android only) and examine the logging. You should see in the logs that Approov is successfully fetching tokens, but the Shapes API is not returning valid shapes:
-
-<p>
-    <img src="readme-images/invalid-token.png" width="256" title="Invalid">
-</p>
-
-**Warning:** Never log tokens in a released app as this could permit hackers to harvest data from your API while the token has not expired! Always use _[loggable](https://www.approov.io/docs/latest/approov-usage-documentation/#loggable-tokens)_ Approov tokens for debugging.
-
-## REGISTER YOUR APP WITH APPROOV
-
-Although the application is now receiving and forwarding tokens with your API calls, the tokens are not yet properly signed, because the attestation service does not recognize your application. Once you register the app with the Approov service, untampered apps will attest successfully and begin to fetch and transmit valid tokens.
-
-Approov command line tools are provided for Windows, MacOS, and Linux platforms. Select the proper operating system executable:
-
-For Android:
+Next add the Approov capable version of the advanced HTTP plugin and its `@awesome-cordova-plugins` wrapper:
 
 ```
-approov registration -add android/app/build/outputs/apk/debug/app-debug.apk
+npm install @approov/cordova-plugin-advanced-http
+npm install @awesome-cordova-plugins/approov-advanced-http
 ```
 
-For iOS:
+This installs the Approov capable plugin from [npm](https://www.npmjs.com/). The plugin provides exactly the same interface but with some additional methods to control the Approov integration. Thus there is no need to change the API requests in your app. If Approov is not initialized then these are performed as normal without attempting to add any Approov capabilities.
 
-```
-approov registration -add path/to/app.ipa
-```
+Note that for Android the minimum SDK version you can use is 21 (Android 5.0). Please [read this](https://approov.io/docs/latest/approov-usage-documentation/#targeting-android-11-and-above) section of the reference documentation if targeting Android 11 (API level 30) or above.
 
-## RUN THE SHAPES APP WITH APPROOV
+## INITIALIZING THE APPROOV PLUGIN
 
-Wait for the registration to propagate to the Approov service. This can take up to 30 seconds. Then restart the application on your device to flush out any bad tokens, tap _Shape_ and you should see one of four possible shapes:
+Approov must be initialized in order to add Approov protection automatically to network requests and to also apply pinning. This initialization must be done prior to any network requests that you wish to protect.  The `<enter-your-config-string-here>` in the examples below is a custom string that configures your Approov account access. This will have been provided in your Approov onboarding email.
 
-<a>
-    <img src="readme-images/triangle.png" width="256" title="Triangle">
-</a>
+## Angular
 
-<a>
-    <img src="readme-images/circle.png" width="256" title="Circle">
-</a>
+In order to use Approov you should include the wrapped plugin as follows:
 
-<a>
-    <img src="readme-images/square.png" width="256" title="Square">
-</a>
-
-<a>
-    <img src="readme-images/rectangle.png" width="256" title="Rectangle">
-</a>
-
-Congratulations, your API is now Approoved! ;)
-
-## WHAT IF I DON'T GET SHAPES
-
-If you still don't get a valid shape then there are some things you can try. Remember this may be because the device you are using has some characteristics that cause rejection for the currently set [Security Policy](https://approov.io/docs/latest/approov-usage-documentation/#security-policies) on your Approov account:
-
-* Ensure that the version of the app you are running is exactly the one you registered with Approov.
-* If you're running the app from a debugger then valid tokens are not issued.
-* Approov token data is logged to the console using a secure mechanism - that is, a _loggable_ version of the token is logged, rather than the _actual_ token for debug purposes. This is covered [here](https://www.approov.io/docs/latest/approov-usage-documentation/#loggable-tokens). The code which performs this is:
-
-```
-const result = await ApproovHttp.getApproovLoggableToken(_host_);
-console.log("Fetched Approov token: " + result);
+```Typescript
+import { HTTP } from '@awesome-cordova-plugins/approov-advanced-http/ngx';
 ```
 
-and the logged token is specified in the variable `result`.
+You must initialize the plugin in the main app component as follows:
 
-The Approov token format (discussed [here](https://www.approov.io/docs/latest/approov-usage-documentation/#token-format)) includes an `anno` claim which can tell you why a particular Approov token is invalid and your app is not correctly authenticated with the Approov Cloud Service. The various forms of annotations are described [here](https://www.approov.io/docs/latest/approov-usage-documentation/#annotation-results).
+```Typescript
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    HTTP.approovInitialize("<enter-your-config-string-here>");
+  }
+}
+```
 
-If you have a trial (as opposed to demo) account you have some additional options:
-* Consider using an [Annotation Policy](https://approov.io/docs/latest/approov-usage-documentation/#annotation-policies) during development to directly see why the device is not being issued with a valid token.
-* Use `approov metrics` to see [Live Metrics](https://approov.io/docs/latest/approov-usage-documentation/#live-metrics) of the cause of failure.
-* You can use a debugger and get valid Approov tokens on a specific device by ensuring it [always passes](https://approov.io/docs/latest/approov-usage-documentation/#adding-a-device-security-policy).
+### React
 
-## USING TOKEN BINDING
+In order to use Approov you should include the wrapped plugin as follows:
 
-It is possible to bind a string of arbitrary data to an Approov token (since Approov tokens can include the hash of an arbitrary data string) which can then be validated by your API.
+```Typescript
+import { HTTP } from '@awesome-cordova-plugins/approov-advanced-http';
+```
 
-To bind a data string, call the `ApproovHttp.approovSetDataHashInToken(data)` method.
+You must initialize the plugin in the main app component as follows:
 
-A common usage for this ‘token binding’ feature is to bind a user’s login token (often an [OAuth2](https://oauth.net/2/) access token), typically specified in the `Authorization` header, to an Approov token thus combining both _user_ authentication and _app_ authentication for an optimal API protection solution. This way only the current authorized user can make API calls from this authenticated app.
+```Typescript
+export class App extends Component<any, AppState> {
+  constructor(props: any) {
+    super(props);
+    HTTP.approovInitialize("<enter-your-config-string-here>");
+  }
+}
+```
 
-In the Shapes v2 API, if the backend service finds a `pay` claim in the Approov token, it looks for an authorization bearer token in the request’s `Authorization` header. If one is found, the backend service will verify that the bearer token’s hash matches the Approov token’s `pay` claim. If the bearer token is not found, the backend service rejects the request.
+### Vue
+
+In order to use Approov you should include the wrapped plugin as follows:
+
+```Typescript
+import { HTTP } from '@awesome-cordova-plugins/approov-advanced-http';
+```
+
+You must initialize the plugin in the main app component as follows:
+
+```Typescript
+export default defineComponent({
+  created() {
+      HTTP.approovInitialize("<enter-your-config-string-here>");
+  }
+})
+```
+
+## CHECKING IT WORKS
+Once the initialization is called, it is possible for any network requests to have Approov tokens or secret substitutions made. Initially you won't have set which API domains to protect, so the requests will be unchanged. It will have called Approov though and made contact with the Approov cloud service. You will see `ApproovService` logging indicating `UNKNOWN_URL` (Android) or `unknown URL` (iOS).
+
+On Android, you can see logging using [`logcat`](https://developer.android.com/studio/command-line/logcat) output from the device. You can see the specific Approov output using `adb logcat | grep ApproovService`. On iOS, look at the console output from the device using the [Console](https://support.apple.com/en-gb/guide/console/welcome/mac) app from MacOS. This provides console output for a connected simulator or physical device. Select the device and search for `ApproovService` to obtain specific logging related to Approov.
+
+Your Approov onboarding email should contain a link allowing you to access [Live Metrics Graphs](https://approov.io/docs/latest/approov-usage-documentation/#metrics-graphs). After you've run your app with Approov integration you should be able to see the results in the live metrics within a minute or so. At this stage you could even release your app to get details of your app population and the attributes of the devices they are running upon.
 
 ## NEXT STEPS
+To actually protect your APIs there are some further steps. Approov provides two different options for protection:
 
-This quick start guide has shown you how to integrate Approov with your existing app. Now you might want to explore some other Approov features:
+* [API PROTECTION](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/API-PROTECTION.md): You should use this if you control the backend API(s) being protected and are able to modify them to ensure that a valid Approov token is being passed by the app. An [Approov Token](https://approov.io/docs/latest/approov-usage-documentation/#approov-tokens) is short lived crytographically signed JWT proving the authenticity of the call.
 
-* Managing your app [registrations](https://approov.io/docs/latest/approov-usage-documentation/#managing-registrations)
-* Manage the [pins](https://approov.io/docs/latest/approov-usage-documentation/#public-key-pinning-configuration) on the API domains to ensure that no Man-in-the-Middle attacks on your app's communication are possible.
-* Update your [Security Policy](https://approov.io/docs/latest/approov-usage-documentation/#security-policies) that determines the conditions under which an app will be given a valid Approov token.
-* Learn how to [Manage Devices](https://approov.io/docs/latest/approov-usage-documentation/#managing-devices) that allows you to change the policies on specific devices.
-* Understand how to provide access for other [Users](https://approov.io/docs/latest/approov-usage-documentation/#user-management) of your Approov account.
-* Use the [Metrics Graphs](https://approov.io/docs/latest/approov-usage-documentation/#metrics-graphs) to see live and accumulated metrics of devices using your account and any reasons for devices being rejected and not being provided with valid Approov tokens. You can also see your billing usage which is based on the total number of unique devices using your account each month.
-* Use [Service Monitoring](https://approov.io/docs/latest/approov-usage-documentation/#service-monitoring) emails to receive monthly (or, optionally, daily) summaries of your Approov usage.
-* Learn about [automated approov CLI usage](https://approov.io/docs/latest/approov-usage-documentation/#automated-approov-cli-usage).
-* Investigate other advanced features, such as [Offline Security Mode](https://approov.io/docs/latest/approov-usage-documentation/#offline-security-mode), [DeviceCheck Integration](https://approov.io/docs/latest/approov-usage-documentation/#apple-devicecheck-integration), [AppAttest Integration](https://approov.io/docs/latest/approov-usage-documentation/#apple-appattest-integration), [SafetyNet Integration](https://approov.io/docs/latest/approov-usage-documentation/#google-safetynet-integration) and [Android Automated Launch Detection](https://approov.io/docs/latest/approov-usage-documentation/#android-automated-launch-detection).
+* [SECRETS PROTECTION](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/SECRETS-PROTECTION.md): If you do not control the backend API(s) being protected, and are therefore unable to modify it to check Approov tokens, you can use this approach instead. It allows app secrets, and API keys, to be protected so that they no longer need to be included in the built code and are only made available to passing apps at runtime.
 
-## TROUBLESHOOTING
+Note that it is possible to use both approaches side-by-side in the same app, in case your app uses a mixture of 1st and 3rd party APIs.
 
-> Add Approov SDK error =>  Error: Command failed: approov sdk -getLibrary quickstart-ionic-advancedhttp/demos/cap-angular/node_modules/cordova-plugin-approov-advanced-http/approov-sdk/approov-sdk.aar
-
-You can face this issue if you have not executed the `approov api -list` command before the `npm install` command.
-Please execute this command before running the `npm install` command again.
-
-```bash
-rm -rf node_modules
-npm install
-```
-
-> Approov/Approov.framework/Approov does not contain bitcode
-
-```bash
-ld: '/Users/ivol/Library/Developer/Xcode/DerivedData/App-fmqxvpamryzdmcfwrbybcfnoctmx/Build/Products/Debug-iphoneos/XCFrameworkIntermediates/Approov/Approov.framework/Approov' does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. file '/Users/ivol/Library/Developer/Xcode/DerivedData/App-fmqxvpamryzdmcfwrbybcfnoctmx/Build/Products/Debug-iphoneos/XCFrameworkIntermediates/Approov/Approov.framework/Approov' for architecture arm64
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-```
-If you face this error in iOS please select App target and disable BITCODE and rebuild the project.
-
-> ld: framework not found Approov.xcframework
-
-If you are getting this error then you are using an older version of cocoapods. Please update it to v1.9+
-
-> Fetched Approov Token. {"error":"no Approov service"}
-
-If you are facing this error then please check out building for iOS at the top. It's occurs in SDK versions that are not in production.
-Make sure you've added this `source 'https://github.com/approov/approov-ios-sdk.git'` at the top of `ios/App/PodFile`.
-
-And then execute:
-
-```bash
-rm -f PodFile.lock
-pod install --repo-update
-```
-
-If this error persists then please open an issue.
-
-> [!] No podspec found for `CordovaPlugins` in `../capacitor-cordova-ios-plugins` 
-
-*or*
-
-> /quickstart-ionic-advancedhttp/demos/cap-angular/android/capacitor-cordova-android-plugins/cordova.variables.gradle' as it does not exist.
- 
-If you are facing this error then please sync the ios/android dependencies using: 
-
-```bash
-ionic cap sync ios
-# For Android please execute 
-ionic cap sync android
-```
+See [REFERENCE](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/REFERENCE.md) for a complete list of all of the Approov related methods.

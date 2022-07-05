@@ -10,6 +10,7 @@ import {
   IonSpinner,
   IonButton,
   IonHeader,
+  setupIonicReact,
 } from "@ionic/react";
 
 /* Core CSS required for Ionic components to work properly */
@@ -31,40 +32,55 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { Component } from "react";
-import {
-  ApproovLoggableToken,
-  ApproovHttp,
-  HTTPResponse,
-} from "@ionic-native/approov-advanced-http";
+
+// COMMENT WHEN USING APPROOV
+import { HTTP, HTTPResponse } from "@awesome-cordova-plugins/http";
+
+// UNCOMMENT WHEN USING APPROOV
+//import { HTTP, HTTPResponse } from "@awesome-cordova-plugins/approov-advanced-http";
+
 import React from "react";
 
 interface AppState {
   message: string;
   imageUrl: string;
   isLoading: boolean;
-  loggableToken?: ApproovLoggableToken;
 }
 
+setupIonicReact();
+
 export class App extends Component<any, AppState> {
-  private http = ApproovHttp;
+  private http = HTTP;
   readonly host = "https://shapes.approov.io";
-  readonly imageBaseUrl = "assets/";
+  readonly imageBaseUrl = "./assets/";
   readonly imageExtension = "png";
-  readonly VERSION = "v1" as string; // Change To v2 when using Approov
+
+  // CHANGE TO v3 FOR APPROOV WITH API PROTECTION; USE v1 FOR APPROOV WITH SECRETS PROTECTION
+  readonly VERSION: string = 'v1'; 
+
   readonly HELLO_URL = `${this.host}/v1/hello`;
   readonly SHAPE_URL = `${this.host}/${this.VERSION}/shapes`;
 
+  // COMMENT IF USING APPOROV WITH SECRETS PROTECTION
+  readonly API_KEY = `yXClypapWNHIifHUWmBIyPFAm`;
+
+  // UNCOMMENT IF USING APPOROV WITH SECRETS PROTECTION
+  //readonly API_KEY = `shapes_api_key_placeholder`;
+
   constructor(props: any) {
     super(props);
+
+    // UNCOMMENT IF USING APPROOV
+    //this.http.approovInitialize("<enter-your-config-string-here>");
+
+    // UNCOMMENT IF USING APPROOV SECRETS PROTECTION
+    //this.http.approovAddSubstitutionHeader("Api-Key", "");
+
     this.state = {
       message: "Tap Hello to Start...",
       isLoading: false,
       imageUrl: this.getImageUrl("approov"),
     };
-
-    if (this.isApproov()) {
-      this.http.initializeApproov();
-    }
   }
 
   async onHelloClick() {
@@ -85,23 +101,15 @@ export class App extends Component<any, AppState> {
   async onShapeClick() {
     this.presentLoadingIndicator();
     try {
-      const response = await this.http.get(this.SHAPE_URL, {}, {});
+      const response = await this.http.get(this.SHAPE_URL, {}, {'Api-Key': this.API_KEY});
       this.hideLoadingIndicator();
       const data = JSON.parse(response.data);
       this.setState({
         message: data.status,
         imageUrl: this.getImageUrl(data.shape.toLowerCase()),
-        loggableToken: this.isApproov()
-          ? await this.http.getApproovLoggableToken(this.host)
-          : undefined,
       });
     } catch (err: any) {
       this.onAPIError(err);
-      if (this.isApproov()) {
-        this.setState({
-          loggableToken: await this.http.getApproovLoggableToken(this.host),
-        });
-      }
     }
   }
 
@@ -134,11 +142,7 @@ export class App extends Component<any, AppState> {
   }
 
   private hideLoadingIndicator() {
-    this.setState({ isLoading: false, loggableToken: undefined });
-  }
-
-  private isApproov(): boolean {
-    return this.VERSION === "v2";
+    this.setState({ isLoading: false });
   }
 
   render() {
@@ -151,15 +155,12 @@ export class App extends Component<any, AppState> {
         </IonHeader>
 
         <IonContent>
-          <IonGrid className="full-height">
+          <IonGrid className="ion-align-items-stretch">
             <IonRow className="ion-justify-content-center ion-align-items-center container">
               <div className="ion-text-center">
-                <IonImg className="image" src={this.state.imageUrl} />
+                <img className="image" src={this.state.imageUrl} />
                 {this.state.isLoading && <IonSpinner name="crescent" />}
                 <p>{this.state.message}</p>
-                {this.state.loggableToken && (
-                  <p> {JSON.stringify(this.state.loggableToken, null, 2)} </p>
-                )}
               </div>
             </IonRow>
             <IonRow>
