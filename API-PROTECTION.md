@@ -69,7 +69,7 @@ See [Exploring Other Approov Features](https://approov.io/docs/latest/approov-us
 The default header name of `Approov-Token` can be changed as follows:
 
 ```Javascript
-HTTP.approovSetTokenHeader("Authorization", "Bearer ");
+http.approovSetTokenHeader("Authorization", "Bearer ");
 ```
 
 The first parameter is the new header name and the second a prefix to be added to the Approov token. This is primarily for integrations where the Approov Token JWT might need to be prefixed with `Bearer` and passed in the `Authorization` header.
@@ -78,7 +78,7 @@ The first parameter is the new header name and the second a prefix to be added t
 If want to use [Token Binding](https://approov.io/docs/latest/approov-usage-documentation/#token-binding) then set the header holding the value to be used for binding as follows:
 
 ```Javascript
-HTTP.approovSetBindingHeader("Authorization");
+http.approovSetBindingHeader("Authorization");
 ```
 
 In this case it means that the value of `Authorization` holds the token value to be bound. This only needs to be called once. On subsequent requests the value of the specified header is read and its value set as the token binding value. Note that you should select a header whose value does not typically change from request to request, as each change requires a new Approov token to be fetched.
@@ -87,7 +87,7 @@ In this case it means that the value of `Authorization` holds the token value to
 If you wish to reduce the latency associated with fetching the first Approov token, then make this call just after initializing Approov:
 
 ```Javascript
-HTTP.approovPrefetch()
+http.approovPrefetch()
 ```
 
 This initiates the process of fetching an Approov token in the background as soon as Approov is initialized, so that a cached token is available immediately when subsequently needed.
@@ -108,7 +108,7 @@ approov secstrings -setEnabled
 Here is an example of calling the appropriate method:
 
 ```Javascript
-HTTP.approovPrecheck()
+http.approovPrecheck()
 .then(() => {
     // the precheck completed okay
 })

@@ -51,7 +51,7 @@ You can add up to 16 different secret values to be substituted in this way.
 If the secret value is provided on the header `your-header` then it is necessary to notify Approov that the header is subject to substitution. You are recommended to make this call just after the Approov initialization:
 
 ```Javascript
-HTTP.approovAddSubstitutionHeader("your-header", "");
+http.approovAddSubstitutionHeader("your-header", "");
 ```
 
 With this in place Approov should replace the `your-placeholder` with `your-secret` as required when the app passes attestation. Since the mapping lookup is performed on the placeholder value you have the flexibility of providing different secrets on different API calls, even if they are passed with the same header name.
@@ -63,7 +63,7 @@ Since earlier released versions of the app may have already leaked `your-secret`
 If the secret value is provided as a parameter in a URL query string with the name `your-param` then it is necessary to notify Approov that the query parameter is subject to substitution. You are recommended to make this call just after Approov initialization:
 
 ```Javascript
-HTTP.approovAddSubstitutionQueryParam("your-param");
+http.approovAddSubstitutionQueryParam("your-param");
 ```
 
 After this Approov should transform any instance of a URL such as `https://your.domain/endpoint?your-param=your-placeholder` into `https://your.domain/endpoint?your-param=your-secret`, if the app passes attestation and there is a secure string with the name `your-placeholder`.
@@ -123,13 +123,13 @@ If the app is not recognized as being valid by Approov then an exception is thro
 If you wish to provide more specific information about the cause of the rejection then you must use the [precheck](#prechecking) capability that can provide more detailed information in the error returned to the failure function. You should consider adding the `precheck` call in any network request error handling in your app, as follows:
 
 ```Javascript
-HTTP.get('http://ionic.io', {}, {})
+http.get('http://ionic.io', {}, {})
 .then(data => {
     // successful network request
 })
 .catch(error => {
     // error - try and determine if this is due to an Approov issue
-    HTTP.approovPrecheck()
+    http.approovPrecheck()
     .then(() => {
         // the precheck completed successfully so error seems unrelated to Approov
     })
@@ -165,7 +165,7 @@ See [Exploring Other Approov Features](https://approov.io/docs/latest/approov-us
 In some cases the value to be substituted on a header may be prefixed by some fixed string. A common case is the presence of `Bearer` included in an authorization header to indicate the use of a bearer token. In this case you can specify a prefix as follows:
 
 ```Javascript
-HTTP.approovAddSubstitutionHeader("Authorization", "Bearer ");
+http.approovAddSubstitutionHeader("Authorization", "Bearer ");
 ```
 
 This causes the `Bearer` prefix to be stripped before doing the lookup for the substitution, and the `Bearer` prefix added to the actual secret value as part of the substitution.
@@ -176,7 +176,7 @@ As shown, it is possible to set predefined secret strings that are only communic
 Here is an example of using the required method:
 
 ```Javascript
-HTTP.approovFetchSecureString(key, newDef)
+http.approovFetchSecureString(key, newDef)
 .then(secret => {
     // use `secret` as required, but never cache or store its value - note `secret` will be null if the
     // provided `key` is not defined
@@ -205,7 +205,7 @@ This method is also useful for providing runtime secrets protection when the val
 If you wish to reduce the latency associated with substituting the first secret, then make this call just after the Approov initialization:
 
 ```Javascript
-HTTP.approovPrefetch()
+http.approovPrefetch()
 ```
 
 This initiates the process of fetching the secrets in the background as soon as Approov is initialized, so that they are available immediately when subsequently needed.
@@ -214,7 +214,7 @@ This initiates the process of fetching the secrets in the background as soon as 
 You may wish to do an early check in your app to present a warning to the user if it is not going to be able to access secrets because it fails the attestation process. Here is an example of calling the appropriate method:
 
 ```Javascript
-HTTP.approovPrecheck()
+http.approovPrecheck()
 .then(() => {
     // the precheck completed okay
 })

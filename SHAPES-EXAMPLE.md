@@ -151,6 +151,8 @@ Now register the built app with Approov as follows:
 approov registration -add android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
+Wait at least 30 seconds and run the app again with `ionic cap run android` to ensure it fetches a new Approov token.
+
 ### iOS
 
 If you run on a physical device then you will need to register an `.ipa` file. Since obtaining this is quite involved we suggest that you instead ensure that attestation [always passes](https://approov.io/docs/latest/approov-usage-documentation/#adding-a-device-security-policy) on a specific device. Launch the app using:
@@ -165,6 +167,8 @@ and press the `Shape` button to try and obtain a shape. This will fail with an e
 ```
 approov device -add latest -policy default,always-pass,all
 ```
+
+Wait at least 30 seconds and run the app again with `ionic cap run ios` to ensure it fetches a new Approov token.
 
 Note, that since a bitcode SDK is being used, this normally requires a registration to have been made. To work around this, issue the following command:
 

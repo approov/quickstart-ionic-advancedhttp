@@ -46,8 +46,9 @@ You must initialize the plugin in the main app component as follows:
 
 ```Typescript
 export class AppComponent implements OnInit {
+  private http = HTTP;
   ngOnInit(): void {
-    HTTP.approovInitialize("<enter-your-config-string-here>");
+    this.http.approovInitialize("<enter-your-config-string-here>");
   }
 }
 ```
@@ -64,9 +65,10 @@ You must initialize the plugin in the main app component as follows:
 
 ```Typescript
 export class App extends Component<any, AppState> {
+  private http = HTTP;
   constructor(props: any) {
     super(props);
-    HTTP.approovInitialize("<enter-your-config-string-here>");
+    this.http.approovInitialize("<enter-your-config-string-here>");
   }
 }
 ```
