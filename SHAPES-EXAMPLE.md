@@ -5,8 +5,8 @@ This quickstart is written specifically for Android and iOS apps that are implem
 ## WHAT YOU WILL NEED
 * Access to a trial or paid Approov account
 * The `approov` command line tool [installed](https://approov.io/docs/latest/approov-installation/) with access to your account
-* [Android Studio](https://developer.android.com/studio) installed (version Bumblebee 2021.1 is used in this guide) if you will build the Android app. Note that the `ANDROID_SDK_ROOT` value must be properly defined to allow the plugin to be built.
-* [Gradle Build Tool](https://gradle.org/install/) installed if you are using Andorid (7.4.2 was used in this guide)
+* [Android Studio](https://developer.android.com/studio) installed (version Bumblebee 2021.1 is used in this guide) if you will build the Android app. Note that the `ANDROID_SDK_ROOT` value must be properly defined to allow the plugin to be built. Note that if you are using Java SDK 17 or later you may experience a compatibility issue with Gradle. In this case you may need to reference an earlier JDK in your `gradle.properties` file as discussed [here](https://stackoverflow.com/questions/70598676/unsupported-class-file-major-version-61-cordova-mac).
+* [Gradle Build Tool](https://gradle.org/install/) installed if you are using Android (7.4.2 was used in this guide)
 * [Xcode](https://developer.apple.com/xcode/) installed (version 13.3 is used in this guide) to build iOS version of application
 * [iOS Deploy](https://www.npmjs.com/package/ios-deploy) must be installed if intend to run on iOS devices
 * [Cocoapods](https://cocoapods.org) installed to support iOS building (1.11.3 used in this guide)
