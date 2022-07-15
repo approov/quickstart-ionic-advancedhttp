@@ -4,9 +4,9 @@ This quickstart is written specifically for Android and iOS apps that are implem
 
 This quickstart provides the basic steps for integrating Approov into your app. A more detailed step-by-step guide using a [Shapes App Example](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/SHAPES-EXAMPLE.md) is also available.
 
-Note that for Android the minimum supported version is 5.1 (SDK level 22). For iOS, only 64-bit devices are supported on iOS 10 or above.
-
 To follow this guide you should have received an onboarding email for a trial or paid Approov account.
+
+Note that the minimum OS requirement for iOS is 10 and for Android the minimum SDK version is 21 (Android 5.0). You cannot use Approov in apps that need to support OS versions older than this.
 
 ## ADDING THE APPROOV PLUGIN
 
