@@ -28,7 +28,7 @@ cordova plugin add @approov/cordova-plugin-advanced-http
 
 This installs the Approov capable plugin from [npm](https://www.npmjs.com/). The plugin provides exactly the same interface but with some additional methods to control the Approov integration. Thus there is no need to change the API request in your app. If Approov is not initialized then these are performed as normal without attempting to add any Approov capabilities.
 
-Note that for Android the minimum SDK version you can use is 21 (Android 5.0). Please [read this](https://approov.io/docs/latest/approov-usage-documentation/#targeting-android-11-and-above) section of the reference documentation if targeting Android 11 (API level 30) or above.
+Please [read this](https://approov.io/docs/latest/approov-usage-documentation/#targeting-android-11-and-above) section of the reference documentation if targeting Android 11 (API level 30) or above.
 
 ## INITIALIZING THE APPROOV PLUGIN
 
