@@ -8,6 +8,8 @@ This quickstart provides the basic steps for integrating Approov into your app. 
 
 To follow this guide you should have received an onboarding email for a trial or paid Approov account.
 
+Note that the minimum OS requirement for iOS is 10 and for Android the minimum SDK version is 21 (Android 5.0). You cannot use Approov in apps that need to support OS versions older than this.
+
 ## ADDING THE APPROOV PLUGIN
 
 It is assumed that your starting point is an app that already uses the [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http) plugin. You must first remove it from your project as follows:
