@@ -173,7 +173,7 @@ Wait at least 30 seconds and run the app again with `ionic cap run ios` to ensur
 Note, that since a bitcode SDK is being used, this normally requires a registration to have been made. To work around this, issue the following command:
 
 ```
-approov sdk -bitcodeAdd 6557
+approov sdk -bitcodeAdd 6713
 ```
 
 ## SHAPES APP WITH APPROOV API PROTECTION
