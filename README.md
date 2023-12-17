@@ -2,7 +2,7 @@
 
 This quickstart is written specifically for Android and iOS apps that are implemented in [Ionic Capacitor](https://capacitorjs.com/) using the [`Cordova Advanced HTTP networking plugin`](https://www.npmjs.com/package/cordova-plugin-advanced-http), accessed via the [`HTTP plugin`](https://ionicframework.com/docs/native/http). If this is not your situation then check if there is a more relevant Quickstart guide available.
 
-This quickstart provides the basic steps for integrating Approov into your app. A more detailed step-by-step guide using a [Shapes App Example](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/SHAPES-EXAMPLE.md) is also available.
+This page provides all the steps for integrating Approov into your app. Additionally, a step-by-step tutorial guide using our [Shapes App Example](https://github.com/approov/quickstart-ionic-advancedhttp/blob/main/SHAPES-EXAMPLE.md) is also available.
 
 To follow this guide you should have received an onboarding email for a trial or paid Approov account.
 
