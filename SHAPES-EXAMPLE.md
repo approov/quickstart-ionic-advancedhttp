@@ -59,7 +59,7 @@ and then you can run the app on your device or simulator with:
 ionic cap run ios
 ```
 
-Note that if running on a device, you may need to update the project with signing information. You can force Ionic to open the Xcode project by executing `ionic cap build ios`.
+Note that if running on a device, you may need to update the project with signing information. You can force Ionic to open the Xcode project by executing `ionic cap build ios`. Note if you are unable to get the app to work on a physical device (as there are some issues with live reload for some Node versions) then please try using a simulator
 
 Note that if you see the message `Error: Invalid checksum received from debugserver` when trying to run on a physical device then this may be because the developer certificate is not trusted on the device. To solve this issue on the device, go to `Settings > General > Profiles or Settings > General > Device Management` on the device, depending on the device type and the iOS version, and trust the developer and allow the apps to be run.
 
@@ -162,18 +162,6 @@ approov appsigncert -add development.cer -autoReg
 If it is not possible to download the correct certificate from the portal then it is also possible to [add app signing certificates from the app](https://approov.io/docs/latest/approov-usage-documentation/#adding-apple-app-signing-certificates-from-app).
 
 Apps built to run on the iOS simulator are not code signed and thus auto-registration does not work for them. In this case you can consider [forcing a device ID to pass](https://approov.io/docs/latest/approov-usage-documentation/#forcing-a-device-id-to-pass) to get a valid attestation.
-
-In order to run on a iOS device the process is a little more involved because you need to generate an `IPA` file. You should build the app with:
-
-```
-ionic cap build ios
-```
-
-This will launch Xcode. From there select `Product -> Archive`. When the archiving is complete a dialog will be shown, select `Distribute App` for the archive. If you just wish to register a development release then select `Development` in the next step which asks about distribution options. When you are ready to publish your app, you will select `App Store Connect` here. In the next `Development distribution options` step just leave the default options and click `Next`. You probably also wish to use the default in the `Re-sign "App"` step too. Finally you will come to the `Review App.ipa content` step and you can `Export` to a folder of your choice. You can then run the app on the device using:
-
-```
-ionic cap run ios
-```
 
 ## SHAPES APP WITH APPROOV API PROTECTION
 
