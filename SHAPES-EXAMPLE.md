@@ -4,11 +4,11 @@ This quickstart is written specifically for Android and iOS apps that are implem
 
 ## WHAT YOU WILL NEED
 * Access to a trial or paid Approov account
-* [Android Studio](https://developer.android.com/studio) installed (version Chipmunk 2021.2.1 is used in this guide) if you will build the Android app. See information about [Android Development](https://ionicframework.com/docs/developing/android) for installation instructions. Note that the `ANDROID_HOME` value must be properly defined to allow building.
-* [Xcode](https://developer.apple.com/xcode/) installed (version 13.4.1 is used in this guide) to build iOS version of application. See information about [iOS Development](https://ionicframework.com/docs/developing/ios) for installation instructions.
+* [Android Studio](https://developer.android.com/studio) installed (version Hedgehog 2023.1.1 is used in this guide) if you will build the Android app. See information about [Android Development](https://ionicframework.com/docs/developing/android) for installation instructions. Note that the `ANDROID_HOME` value must be properly defined to allow building.
+* [Xcode](https://developer.apple.com/xcode/) installed (version 15.1 is used in this guide) to build iOS version of application. See information about [iOS Development](https://ionicframework.com/docs/developing/ios) for installation instructions.
 * [Cocoapods](https://cocoapods.org) installed to support iOS building (1.11.3 used in this guide)
 * [NodeJS](https://nodejs.org/en/) v14+ installed in the system
-* [Ionic CLI](https://ionicframework.com/docs/intro/cli) installed in the system (note you may need to use `sudo` when using npm to install the Ionic CLI globally)
+* [Ionic CLI](https://ionicframework.com/docs/intro/cli) installed in the system (note you may need to use `sudo` when using npm to install the Ionic CLI globally). Version 7.1.6 is used in this guide.
 * The `approov` command line tool [installed](https://approov.io/docs/latest/approov-installation/) with access to your account
 * An iOS device or simulator if you are using the iOS platform
 * An Android device or emulator if you are using the Android platform
@@ -43,6 +43,8 @@ and then you can run the app on your device or emulator with:
 ionic cap run android
 ```
 
+Note, if you are building `cap-react` and experience an error [`digital envelope routines::unsupported`](https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported) then we suggest you use the `export NODE_OPTIONS=--openssl-legacy-provider` solution suggested.
+
 ### iOS
 
 Firstly you need to prepare the iOS build with:
@@ -57,7 +59,7 @@ and then you can run the app on your device or simulator with:
 ionic cap run ios
 ```
 
-Note that if running on a device, you may need to update the project with signing information. You can force Ionic to open the Xcode project to do this by executing `ionic cap build ios`.
+Note that if running on a device, you may need to update the project with signing information. You can force Ionic to open the Xcode project by executing `ionic cap build ios`.
 
 Note that if you see the message `Error: Invalid checksum received from debugserver` when trying to run on a physical device then this may be because the developer certificate is not trusted on the device. To solve this issue on the device, go to `Settings > General > Profiles or Settings > General > Device Management` on the device, depending on the device type and the iOS version, and trust the developer and allow the apps to be run.
 

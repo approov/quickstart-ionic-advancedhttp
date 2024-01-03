@@ -6,7 +6,7 @@ This page provides all the steps for integrating Approov into your app. Addition
 
 To follow this guide you should have received an onboarding email for a trial or paid Approov account.
 
-Note that the minimum OS requirement for iOS is 10 and for Android the minimum SDK version is 21 (Android 5.0). You cannot use Approov in apps that need to support OS versions older than this.
+Note that the minimum OS requirement for iOS is 13 and for Android the minimum SDK version is 22 (Android 5.1). You cannot use Approov in apps that need to support OS versions older than this.
 
 ## ADDING THE APPROOV PLUGIN
 

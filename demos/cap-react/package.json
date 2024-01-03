@@ -70,7 +70,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "3.4.3"
+    "@capacitor/cli": "^3.4.3"
   },
   "description": "Approov Ionic React Test App"
 }
