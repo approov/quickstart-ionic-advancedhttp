@@ -12,5 +12,12 @@
 	"cordova": {},
 	"server": {
 		"cleartext": true
-	}
+	},
+	"packageClassList": [
+		"AppPlugin",
+		"HapticsPlugin",
+		"KeyboardPlugin",
+		"StatusBarPlugin",
+		"CDVPlugin"
+	]
 }
