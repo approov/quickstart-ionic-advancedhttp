@@ -4,8 +4,9 @@ This quickstart is written specifically for Android and iOS apps that are implem
 
 ## WHAT YOU WILL NEED
 * Access to a trial or paid Approov account
-* [Android Studio](https://developer.android.com/studio) installed (version Hedgehog 2023.1.1 is used in this guide) if you will build the Android app. See information about [Android Development](https://ionicframework.com/docs/developing/android) for installation instructions. Note that the `ANDROID_HOME` value must be properly defined to allow building.
-* [Xcode](https://developer.apple.com/xcode/) installed (version 15.1 is used in this guide) to build iOS version of application. See information about [iOS Development](https://ionicframework.com/docs/developing/ios) for installation instructions.
+* [Android Studio](https://developer.android.com/studio) installed (version Koala 2024.1.1 is used in this guide) if you will build the Android app. See information about [Android Development](https://ionicframework.com/docs/developing/android) for installation instructions. Note that the `ANDROID_HOME` value must be properly defined to allow building.
+* JDK 17 with openjdk 17.0.10 2024-01-16 LTS used in this guide
+* [Xcode](https://developer.apple.com/xcode/) installed (version 15.4 is used in this guide) to build iOS version of application. See information about [iOS Development](https://ionicframework.com/docs/developing/ios) for installation instructions.
 * [Cocoapods](https://cocoapods.org) installed to support iOS building (1.11.3 used in this guide)
 * [NodeJS](https://nodejs.org/en/) v14+ installed in the system
 * [Ionic CLI](https://ionicframework.com/docs/intro/cli) installed in the system (note you may need to use `sudo` when using npm to install the Ionic CLI globally). Version 7.1.6 is used in this guide.
